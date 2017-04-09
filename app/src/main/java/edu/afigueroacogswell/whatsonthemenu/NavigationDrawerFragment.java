@@ -41,6 +41,8 @@ public class NavigationDrawerFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        //Check if the user has opened the drawer.
         mUserLearnedDrawer = Boolean.getBoolean(readFromPreferences(getActivity(), KEY_USER_LEARNED_DRAWER, "false"));
         if(savedInstanceState != null)
         {
@@ -62,7 +64,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     /*App Functions
     * */
-    public void setUp(int fragmentId, DrawerLayout drawerLayout, Toolbar toolBar)
+    public void setUp(int fragmentId, DrawerLayout drawerLayout, final Toolbar toolBar)
     {
         containerView = getActivity().findViewById(fragmentId);
         mDrawerLayout = drawerLayout;
@@ -85,6 +87,15 @@ public class NavigationDrawerFragment extends Fragment {
             {
                 super.onDrawerClosed(drawerView);
                 getActivity().invalidateOptionsMenu();
+            }
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+
+                if(slideOffset < 0.6)
+                {
+                    toolBar.setAlpha(1- slideOffset);
+                }
             }
         };
 
