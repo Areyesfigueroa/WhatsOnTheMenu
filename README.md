@@ -1,3 +1,4 @@
+
 What's On The Menu App:
 
 Description:
@@ -8,6 +9,8 @@ to cook with the ingredients readily available at your home.
 Schedule:
 Week1 - 4/3 to 4/9 -
 App layout, Activities, Navigation. Button Navigation in main activity.
+NavigationDrawerLayoutSetUp: Done.
+Currently: Setting up activities around the NavigationDrawerlayout. 
 
 Week2 - 4/10 to 4/16 - 
 Food Network back-end implementation and testing
