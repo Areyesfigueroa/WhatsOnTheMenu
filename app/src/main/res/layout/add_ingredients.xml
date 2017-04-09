@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--Activity Title-->
+    <TextView
+        android:id="@+id/add_ingredients_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refrigerator"
+        android:textColor="@color/colorBasicWhite"
+        android:textSize="25dp"/>
+
+
+    <!--Line Separator-->
+    <TextView
+        android:id="@+id/line_separator"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@+id/add_ingredients_title"
+        android:background="@color/colorAccent"/>
+
+    <!--Spinners-->
+    <!--TODO: Make them dynamically created. ID's should be the same with an increment number at the end.-->
+    <Spinner
+        android:id="@+id/Proteins"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line_separator"></Spinner>
+
+
+
+
+    <!--Create Spinner Button-->
+    <!--TODO: Needs to be dynamically created. layout_below will always be the last created spinner.-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Food Group"
+        android:visibility="gone"/>
+
+
+
+
+
+</RelativeLayout>

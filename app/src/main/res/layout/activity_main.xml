@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+<!--TODO: Delete this Activity if not needed. activity_main_appbar is now the main activity.-->
 <android.support.v4.widget.DrawerLayout
 
     android:id="@+id/drawer_layout"
