@@ -3,6 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--App Bar-->
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar"></include>
+
     <!--Activity Title-->
     <TextView
         android:id="@+id/add_ingredients_title"
@@ -10,7 +15,8 @@
         android:layout_height="wrap_content"
         android:text="Refrigerator"
         android:textColor="@color/colorBasicWhite"
-        android:textSize="25dp"/>
+        android:textSize="25dp"
+        android:layout_below="@+id/app_bar"/>
 
 
     <!--Line Separator-->
@@ -30,16 +36,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/line_separator"></Spinner>
 
-
-
-
     <!--Create Spinner Button-->
     <!--TODO: Needs to be dynamically created. layout_below will always be the last created spinner.-->
     <Button
+        android:id="@+id/addNewSpinnerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create Food Group"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:layout_alignParentStart="true" />
 
 
 

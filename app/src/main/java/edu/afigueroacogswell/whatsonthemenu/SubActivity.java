@@ -9,6 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+/*
+* Class is becoming deprecated. It was only a prototype class. TODO: Make sure to delete this class
+* */
 public class SubActivity extends AppCompatActivity {
 
     @Override
@@ -23,6 +26,7 @@ public class SubActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -37,7 +41,7 @@ public class SubActivity extends AppCompatActivity {
         * Handle action bar item clicks here. The action bar will
         * automatically handle clicks on te Home/Up button, so long
         * as you specify a parent activity in AndroidManifest.xml
-        * */
+        *
         int id = item.getItemId();
 
         if (id == R.id.sub_action_settings)
@@ -52,4 +56,5 @@ public class SubActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    */
 }
