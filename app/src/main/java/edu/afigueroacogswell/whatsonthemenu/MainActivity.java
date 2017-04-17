@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity{
         * */
         toolbar= (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true); // Delete this
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // delete this
 
         /*Navigation Drawer Initialization
@@ -40,14 +41,6 @@ public class MainActivity extends AppCompatActivity{
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
 
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
-
-        /*Spinner Prototype Initialization & Adapter Set Up
-        * */
-        /*AddIngredients addIngredients = new AddIngredients(); //Get a ref the spinner.
-        spinner = (Spinner) findViewById(R.id.Proteins);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.ProteinsArray, R.layout.support_simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(addIngredients); //Stating which class is responsible for handling the listeners.*/
     }
 
     @Override
@@ -62,7 +55,7 @@ public class MainActivity extends AppCompatActivity{
 
     //Functions
 
-    /* This function handles all of the button inputs for this activity
+    /* This function handles all of the button inputs for the menu layout
     * */
     @Override
     public boolean onOptionsItemSelected(MenuItem item)

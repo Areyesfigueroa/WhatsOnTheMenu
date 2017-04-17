@@ -10,13 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-/**
- * Created by aliel on 4/12/2017.
- */
 
 /*
 * TODO: Create the Toolbar so that it can display on every activity.
@@ -30,6 +27,7 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
     /*Global References
     * */
     Spinner spinner;
+    Button createSpinnerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +36,18 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
 
 
         /*
+        * Button SetUp
+        * */
+
+        createSpinnerButton = (Button) findViewById(R.id.createSpinnerButton);
+
+        /*
         * Toolbar set up
         * */
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
-
-
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getSupportActionBar().setHomeButtonEnabled(true); // Delete this
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Delete this
 
 
         /*Spinner Prototype Initialization & Adapter Set Up
@@ -64,7 +65,7 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.menu_sub, menu);
+        getMenuInflater().inflate(R.menu.menu_addingredients, menu);
         return true;
     }
 
@@ -84,7 +85,7 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
 
         if (id == R.id.add_ingredients_action_settings) //this is the three dots on the toolbar for settings
         {
-            Toast.makeText(this, "Sub-Class: " + item.getTitle(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Add-Ingredients: " + item.getTitle(), Toast.LENGTH_SHORT).show();
             return true;
         }
         if (id == R.id.home)

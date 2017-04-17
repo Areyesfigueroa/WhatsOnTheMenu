@@ -8,6 +8,7 @@
     <!--Basic Colors-->
     <color name="colorBasicWhite">#FFF</color>
     <color name="colorBasicBlack">#000</color>
+    <color name="colorBasicGreen">#4C9900</color>
 
     <!--Fragment Activity Colors-->
     <color name="colorFragmentLayoutBackground">#eee</color>
