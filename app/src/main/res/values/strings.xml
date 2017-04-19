@@ -12,7 +12,28 @@
         <item>Meats</item>
         <item>Chicken</item>
         <item>Seafood</item>
-        <item>CustomContainer</item>
+        <item>Add Protein Item</item>
+    </string-array>
+
+    <string-array name="VegetablesArray">
+        <item>Broccoly</item>
+        <item>Mushrooms</item>
+        <item>Spinach</item>
+        <item>Add Vegeteble Item</item>
+    </string-array>
+
+    <string-array name="StarchArray">
+        <item>Rice</item>
+        <item>Pasta</item>
+        <item>Potatoes</item>
+        <item>Add Starch Item</item>
+    </string-array>
+
+    <string-array name="CondimentsArray">
+        <item>Ketchup</item>
+        <item>Mayonnaise</item>
+        <item>Mustard</item>
+        <item>Add Condiment Item</item>
     </string-array>
     
     <!-- Fragment Layout String Variables-->
