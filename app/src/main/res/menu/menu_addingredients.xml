@@ -4,7 +4,7 @@
     tools:context=".MainActivity">
 
     <item
-        android:id="@+id/sub_action_settings"
+        android:id="@+id/add_ingredients_action_settings"
         android:title="Settings"
         android:orderInCategory="100"
         app:showAsAction="never" />

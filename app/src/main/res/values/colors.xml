@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Main App Colors-->
     <color name="colorPrimary">#00bcd4</color>
     <color name="colorPrimaryDark">#006064</color>
     <color name="colorAccent">#eff1c5</color>
+
+    <!--Basic Colors-->
+    <color name="colorBasicWhite">#FFF</color>
+    <color name="colorBasicBlack">#000</color>
+    <color name="colorBasicGreen">#4C9900</color>
+
+    <!--Fragment Activity Colors-->
+    <color name="colorFragmentLayoutBackground">#eee</color>
 </resources>

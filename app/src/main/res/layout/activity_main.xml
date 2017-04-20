@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+<!--TODO: Delete this Activity if not needed. activity_main_appbar is now the main activity.-->
 <android.support.v4.widget.DrawerLayout
 
     android:id="@+id/drawer_layout"
@@ -35,7 +38,7 @@
     <fragment
         android:id="@+id/fragment_navigation_drawer"
         android:name="edu.afigueroacogswell.whatsonthemenu.NavigationDrawerFragment"
-        android:layout_width="290dp"
+        android:layout_width="100dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:layout="@layout/fragment_navigation_drawer"

@@ -4,13 +4,55 @@
     android:layout_height="match_parent"
     tools:context="edu.afigueroacogswell.whatsonthemenu.NavigationDrawerFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!--Fragment Background-->
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#EEE"
-        android:text="@string/hello_blank_fragment"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:background="@color/colorFragmentLayoutBackground" />
+
+    <!--Fragment Content-->
+    <TextView
+        android:id="@+id/navigation_menu_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/navigation_menu"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:layout_marginLeft="35dp"/>
+
+    <Button
+        android:id="@+id/add_ingredients_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Ingredients"
+        android:layout_below="@+id/navigation_menu_text"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/create_menu_button"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Menu"
+        android:layout_below="@+id/add_ingredients_button"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:layout_below="@+id/create_menu_button"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>

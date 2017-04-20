@@ -1,10 +1,24 @@
 <resources>
+    <!--Tool Bar String Variables-->
     <string name="app_name">WhatsOnTheMenu</string>
     <string name="next">Next</string>
 
-    <!--Drawer String Variables-->
+    <!--Drawer Layout String Variables-->
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!--Spinner Prototype Static Array TODO: Make in java for dynamic implementation-->
+    <string-array name="ProteinsArray">
+        <item>Meats</item>
+        <item>Chicken</item>
+        <item>Seafood</item>
+        <item>CustomContainer</item>
+    </string-array>
+    
+    <!-- Fragment Layout String Variables-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="navigation_menu">Menu</string>
+    <string name="add_ingredients">Add Ingredients</string>
+    <string name="create_menu">Create Menu</string>
+    <string name="search">Search</string>
 </resources>

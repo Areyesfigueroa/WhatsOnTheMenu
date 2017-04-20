@@ -8,9 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Custom App Style. TODO: Ask Charlene for Color Layout-->
     <style name="MyCustomToolBarTheme" parent="ThemeOverlay.AppCompat.Light">
-        <item name="android:textColorPrimary">#F00</item>
-        <item name="android:textColorSecondary">#00F</item>
+        <item name="android:textColorPrimary">@color/colorBasicBlack</item>
+        <item name="android:textColorSecondary">@color/colorBasicWhite</item>
     </style>
 
 </resources>

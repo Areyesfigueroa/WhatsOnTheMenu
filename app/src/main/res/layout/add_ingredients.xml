@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--App Bar-->
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar"></include>
+
+
+    <!--Activity Title-->
+    <TextView
+        android:id="@+id/add_ingredients_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refrigerator"
+        android:textColor="@color/colorBasicWhite"
+        android:textSize="25dp"
+        android:layout_below="@+id/app_bar"/>
+
+
+    <!--Line Separator-->
+    <TextView
+        android:id="@+id/line_separator"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@+id/add_ingredients_title"
+        android:background="@color/colorAccent"/>
+
+    <!--Spinners-->
+    <!--TODO: Have the base containers in it. For now the user will make custom inputs.-->
+    <Spinner
+        android:id="@+id/Proteins"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorBasicGreen"
+        android:layout_below="@+id/line_separator"></Spinner>
+
+    <Spinner
+        android:id="@+id/Greens"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorBasicGreen"
+        android:layout_below="@+id/Proteins"></Spinner>
+
+    <Spinner
+        android:id="@+id/Starch"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorBasicGreen"
+        android:layout_below="@+id/Greens"></Spinner>
+
+    <Spinner
+        android:id="@+id/Condiments"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorBasicGreen"
+        android:layout_below="@+id/Starch"></Spinner>
+
+    <!--Create Spinner Button-->
+    <!--For now the button will stay below, eventually it should always be underneath the sliders-->
+    <!--TODO: Create buttons alongside the spinners to add onto the list. -->
+    <Button
+        android:id="@+id/createSpinnerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Food Group"
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="17dp" />
+
+
+
+
+
+</RelativeLayout>
