@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:text="Refrigerator"
         android:textColor="@color/colorBasicWhite"
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:layout_below="@+id/app_bar"/>
 
 
@@ -30,31 +30,77 @@
         android:layout_below="@+id/add_ingredients_title"
         android:background="@color/colorAccent"/>
 
+    <!--Text Headers-->
+    <TextView
+        android:id="@+id/proteins_text"
+        android:text="Proteins"
+        android:textColor="@color/colorBasicWhite"
+        android:textSize="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/add_to_proteins_button"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/vegetables_text"
+        android:text="Vegetables"
+        android:textColor="@color/colorBasicWhite"
+        android:textSize="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/add_to_vegetables_button"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/starch_text"
+        android:text="Starch"
+        android:textColor="@color/colorBasicWhite"
+        android:textSize="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/add_to_starch_button"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/condiments_text"
+        android:text="Condiments"
+        android:textColor="@color/colorBasicWhite"
+        android:textSize="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/add_to_condiments_button"
+        android:layout_alignParentStart="true" />
+
     <!--Spinners-->
-    <!--TODO: Have the base containers in it. For now the user will make custom inputs.-->
+    <!--TODO: Have the base containers in it. Add button at the end of the spinner.-->
     <Spinner
         android:id="@+id/Proteins"
-        android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorBasicGreen"
-        android:layout_below="@+id/line_separator"></Spinner>
-
-    <Spinner
-        android:id="@+id/Greens"
         android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/colorBasicGreen"
-        android:layout_below="@+id/Proteins"></Spinner>
+        android:layout_below="@+id/line_separator"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/add_to_proteins_button"></Spinner>
+
+    <Spinner
+        android:id="@+id/Vegetables"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorBasicGreen"
+        android:layout_below="@+id/Proteins"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/add_to_vegetables_button"></Spinner>
 
     <Spinner
         android:id="@+id/Starch"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="48dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/colorBasicGreen"
-        android:layout_below="@+id/Greens"></Spinner>
+        android:layout_below="@+id/Vegetables"
+        android:layout_toEndOf="@+id/add_to_starch_button"></Spinner>
 
     <Spinner
         android:id="@+id/Condiments"
@@ -62,23 +108,54 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/colorBasicGreen"
-        android:layout_below="@+id/Starch"></Spinner>
+        android:layout_below="@+id/Starch"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/add_to_condiments_button"></Spinner>
 
-    <!--Create Spinner Button-->
-    <!--For now the button will stay below, eventually it should always be underneath the sliders-->
-    <!--TODO: Create buttons alongside the spinners to add onto the list. -->
+
+    <!--Buttons (If i have time. Make it so that You can create spinners dynamically)-->
     <Button
-        android:id="@+id/createSpinnerButton"
-        android:layout_width="wrap_content"
+        android:id="@+id/add_to_proteins_button"
+        android:text="+"
+        android:textSize="30dp"
+        android:layout_width="50dp"
+        android:background="@color/colorBasicGreen"
         android:layout_height="wrap_content"
-        android:text="Create Food Group"
-        android:visibility="visible"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp" />
+        android:layout_alignTop="@+id/Proteins"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/Proteins" />
 
+    <Button
+        android:id="@+id/add_to_vegetables_button"
+        android:text="+"
+        android:textSize="30dp"
+        android:layout_width="50dp"
+        android:background="@color/colorBasicGreen"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/Vegetables"
+        android:layout_alignBottom="@+id/Vegetables" />
 
+    <Button
+        android:id="@+id/add_to_starch_button"
+        android:text="+"
+        android:textSize="30dp"
+        android:layout_width="50dp"
+        android:background="@color/colorBasicGreen"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/Starch"
+        android:layout_alignTop="@+id/Starch" />
 
-
+    <Button
+        android:id="@+id/add_to_condiments_button"
+        android:text="+"
+        android:textSize="30dp"
+        android:layout_width="50dp"
+        android:background="@color/colorBasicGreen"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/Condiments"
+        android:layout_alignTop="@+id/Condiments"/>
 
 </RelativeLayout>
