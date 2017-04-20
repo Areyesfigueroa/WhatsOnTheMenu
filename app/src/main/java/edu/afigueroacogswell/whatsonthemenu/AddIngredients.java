@@ -36,11 +36,7 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
     Button addToStarchButton;
     Button addToCondimentsButton;
 
-    //Header Strings
-    final String proteinsHeader = getResources().getString(R.string.proteins_header);
-    final String vegetablesHeader = getResources().getString(R.string.vegetables_header);
-    final String starchHeader = getResources().getString(R.string.starch_header);
-    final String condimentsHeader = getResources().getString(R.string.condiments_header);
+    public AddIngredients(){}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,27 +86,27 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
             case R.id.add_to_proteins_button:
                 //do code
                 Log.d("proteins_button", "Executed");
-                PopUpForm.headerString = proteinsHeader;
+                PopUpForm.headerString = Refrigerator.proteinsHeader;
                 startActivity(new Intent(AddIngredients.this, PopUpForm.class));
 
                 break;
             case R.id.add_to_vegetables_button:
                 //do code
                 Log.d("vegetables_button", "Executed");
-                PopUpForm.headerString = vegetablesHeader;
+                PopUpForm.headerString = Refrigerator.vegetablesHeader;
                 startActivity(new Intent(AddIngredients.this, PopUpForm.class));
                 break;
             case R.id.add_to_starch_button:
                 //do code
                 Log.d("starch_button", "Executed");
-                PopUpForm.headerString = starchHeader;
+                PopUpForm.headerString = Refrigerator.starchHeader;
                 startActivity(new Intent(AddIngredients.this, PopUpForm.class));
 
                 break;
             case R.id.add_to_condiments_button:
                 //do code
                 Log.d("condiments_button", "Executed");
-                PopUpForm.headerString = condimentsHeader;
+                PopUpForm.headerString = Refrigerator.condimentsHeader;
                 startActivity(new Intent(AddIngredients.this, PopUpForm.class));
 
                 break;

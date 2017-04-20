@@ -30,7 +30,9 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
     TextView headerText;
 
     //Input Content
-    EditText editText;
+    EditText nameEditText;
+    EditText portionsEditText;
+    EditText servingsEditText;
 
     String inputFoodName;
     String inputUnitMeasurements; //spinner variable
@@ -60,14 +62,9 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
         /*
         * Set Form Input Contents
         * */
-        editText = (EditText) findViewById(R.id.input_ingredient_name_text);
-        inputFoodName = editText.toString();
-
-        editText = (EditText) findViewById(R.id.input_portions);
-        inputPortionSize = Float.parseFloat(editText.toString());
-
-        editText = (EditText) findViewById(R.id.input_servings);
-        inputTotalServings = Integer.parseInt(editText.toString());
+        nameEditText = (EditText) findViewById(R.id.input_ingredient_name_text);
+        portionsEditText= (EditText) findViewById(R.id.input_portions);
+        servingsEditText = (EditText) findViewById(R.id.input_servings);
 
 
         /*
@@ -114,7 +111,6 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
     }
 
 
-
     /*
     * Button Listener functions
     * */
@@ -125,12 +121,20 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
         {
             case R.id.create_button:
                 Log.d("create_button", "Executed");
+                //TODO: Check for exceptions if user does not enter anything.
+                //Get User Input
+                inputFoodName = nameEditText.getText().toString();
+                inputPortionSize = Float.parseFloat(portionsEditText.getText().toString());
+                inputTotalServings = Integer.parseInt(servingsEditText.getText().toString());
 
+                //Pass User inputs as arguments to the food container. Then pass food container to the refrigerator class.
                 FoodItem foodItem = new FoodItem(inputFoodName, inputPortionSize, inputUnitMeasurements, inputTotalServings);
                 Refrigerator.getInstance().addFoodItem(foodItem, headerString);
+                this.finish(); //closes activity
                 break;
             case R.id.cancel_button:
                 Log.d("cancel_button", "Executed");
+                this.finish();
                 break;
             default:
                 break;
@@ -148,7 +152,7 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
         * Data: Strings
         * grams, ounces
         * */
-        inputUnitMeasurements = itemSelectedTxt.toString();
+        inputUnitMeasurements = itemSelectedTxt.getText().toString();
     }
 
 

@@ -2,8 +2,6 @@ package edu.afigueroacogswell.whatsonthemenu;
 
 import android.support.v7.app.AppCompatActivity;
 
-import java.util.Dictionary;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,68 +28,70 @@ public class Refrigerator extends AppCompatActivity
         return refrigerator;
     }
 
-    //Header Strings for localization
-    final String proteinsHeader = getResources().getString(R.string.proteins_header);
-    final String vegetablesHeader = getResources().getString(R.string.vegetables_header);
-    final String starchHeader = getResources().getString(R.string.starch_header);
-    final String condimentsHeader = getResources().getString(R.string.condiments_header);
+    //Header Strings
+    final static String proteinsHeader = "Proteins";
+    final static String vegetablesHeader = "Vegetables";
+    final static String starchHeader = "Starch";
+    final static String condimentsHeader = "Condiments";
 
-    private Map<String, FoodItem> proteinsDic = new HashMap<String, FoodItem>();
-    private Map<String, FoodItem> vegetablesDic = new HashMap<String, FoodItem>();
-    private Map<String, FoodItem> starchDic = new HashMap<String, FoodItem>();
-    private Map<String, FoodItem> condimentsDic = new HashMap<String, FoodItem>();
+    private Map<String, FoodItem> proteinsMap = new HashMap<String, FoodItem>();
+    private Map<String, FoodItem> vegetablesMap = new HashMap<String, FoodItem>();
+    private Map<String, FoodItem> starchMap = new HashMap<String, FoodItem>();
+    private Map<String, FoodItem> condimentsMap = new HashMap<String, FoodItem>();
 
+
+    //TODO: Test that items are going into the refrigerator.
     protected void addFoodItem(FoodItem fItem, String foodType)
     {
         if (proteinsHeader.equals(foodType))
-            proteinsDic.put(fItem.getName(), fItem);
+            proteinsMap.put(fItem.getName(), fItem);
 
         if(vegetablesHeader.equals(foodType))
-            vegetablesDic.put(fItem.getName(), fItem);
+            vegetablesMap.put(fItem.getName(), fItem);
 
         if(starchHeader.equals(foodType))
-            starchDic.put(fItem.getName(), fItem);
+            starchMap.put(fItem.getName(), fItem);
 
         if(condimentsHeader.equals(foodType))
-            condimentsDic.put(fItem.getName(), fItem);
+            condimentsMap.put(fItem.getName(), fItem);
     }
 
     /*
     * SETTERS for dictionary elements.
     * */
     public void setProteinsMapElem(String key, FoodItem value) {
-        this.proteinsDic.put(key, value); //Replace
+        this.proteinsMap.put(key, value); //Replace
     }
 
     public void setVegetablesMapElem(String key, FoodItem value) {
-        this.vegetablesDic.put(key, value);
+        this.vegetablesMap.put(key, value);
     }
 
     public void setStarchMapElem(String key, FoodItem value) {
-        this.starchDic.put(key, value);
+        this.starchMap.put(key, value);
     }
 
     public void setCondimentsMapElem(String key, FoodItem value) {
-        this.condimentsDic.put(key, value);
+        this.condimentsMap.put(key, value);
     }
 
     /*
     * GETTERS, TODO: test to see if the setters are obsolete.
     * */
-    public Map<String, FoodItem> getProteinsDic() {
-        return proteinsDic;
+    public Map<String, FoodItem> getProteinsMap() {
+        return proteinsMap;
     }
 
-    public Map<String, FoodItem> getVegetablesDic() {
-        return vegetablesDic;
+    public Map<String, FoodItem> getVegetablesMap() {
+        return vegetablesMap;
     }
 
-    public Map<String, FoodItem> getStarchDic() {
-        return starchDic;
+    public Map<String, FoodItem> getStarchMap() {
+        return starchMap;
     }
 
-    public Map<String, FoodItem> getCondimentsDic() {
-        return condimentsDic;
+    public Map<String, FoodItem> getCondimentsMap() {
+        return condimentsMap;
     }
 }
 
