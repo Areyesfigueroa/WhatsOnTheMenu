@@ -126,6 +126,7 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
 
     /*
     * Initializes all spinners
+    * TODO: Create an adapter that does not create from resources since it limits the array to static strings.
     * */
     private void initSpinners(int spinnerIDs[], int spinnerArrs[])
     {
