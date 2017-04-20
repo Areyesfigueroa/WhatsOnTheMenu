@@ -42,4 +42,11 @@
     <string name="add_ingredients">Add Ingredients</string>
     <string name="create_menu">Create Menu</string>
     <string name="search">Search</string>
+
+    <!--PopUpFormLayout-->
+    <string-array name="UnitsArray">
+        <item>ounces</item>
+        <item>cup</item>
+    </string-array>
+
 </resources>

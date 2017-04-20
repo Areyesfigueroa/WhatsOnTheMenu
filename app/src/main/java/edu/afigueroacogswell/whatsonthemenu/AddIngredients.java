@@ -1,6 +1,7 @@
 package edu.afigueroacogswell.whatsonthemenu;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -83,6 +84,7 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
             case R.id.add_to_proteins_button:
                 //do code
                 Log.d("proteins_button", "Executed");
+                startActivity(new Intent(AddIngredients.this, PopUpForm.class));
                 break;
             case R.id.add_to_vegetables_button:
                 //do code

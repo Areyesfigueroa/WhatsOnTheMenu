@@ -22,14 +22,12 @@
                 android:value=".MainActivity">
             </meta-data>
         </activity>
-        <!--TODO: Delete this prototype activity-->
-        <activity android:name=".SubActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity">
 
-            </meta-data>
+        <activity android:name=".PopUpForm"
+            android:theme="@style/AppTheme.PopUpForm">
+
         </activity>
+
     </application>
 
 </manifest>
