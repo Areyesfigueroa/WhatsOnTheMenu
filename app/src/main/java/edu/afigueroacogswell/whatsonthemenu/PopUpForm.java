@@ -10,6 +10,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,9 +26,22 @@ import java.util.Enumeration;
 
 public class PopUpForm extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener
 {
+    public static String headerString;
+    TextView headerText;
+
+    //Input Content
+    EditText editText;
+
+    String inputFoodName;
+    String inputUnitMeasurements; //spinner variable
+    float inputPortionSize;
+    int inputTotalServings;
+
+    //Buttons
     Button createButton;
     Button cancelButton;
 
+    //Spinner
     String[] units = new String[2];
     Spinner spinner;
 
@@ -38,13 +52,34 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.popupform);
 
         /*
+        * Set up Header for form
+        * */
+        headerText = (TextView) findViewById(R.id.form_header_text);
+        headerText.setText(headerString);
+
+        /*
+        * Set Form Input Contents
+        * */
+        editText = (EditText) findViewById(R.id.input_ingredient_name_text);
+        inputFoodName = editText.toString();
+
+        editText = (EditText) findViewById(R.id.input_portions);
+        inputPortionSize = Float.parseFloat(editText.toString());
+
+        editText = (EditText) findViewById(R.id.input_servings);
+        inputTotalServings = Integer.parseInt(editText.toString());
+
+
+        /*
         * Units Spinner set up
         * We do not care at the moments. Add unit measurements later onto the project.
         * */
 
+        //Spinner Contents Set up
         units[0] = "grams";
         units[1] = "ounces";
 
+        //Spinner set up
         spinner = (Spinner) findViewById(R.id.unit_spinner);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, units);
@@ -91,14 +126,8 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
             case R.id.create_button:
                 Log.d("create_button", "Executed");
 
-                //Pass Data to the spinner
-                /*
-                * Data Includes:
-                * Food Name -> String
-                * Portion number -> float
-                * Calories -> int
-                * */
-
+                FoodItem foodItem = new FoodItem(inputFoodName, inputPortionSize, inputUnitMeasurements, inputTotalServings);
+                Refrigerator.getInstance().addFoodItem(foodItem, headerString);
                 break;
             case R.id.cancel_button:
                 Log.d("cancel_button", "Executed");
@@ -119,6 +148,7 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
         * Data: Strings
         * grams, ounces
         * */
+        inputUnitMeasurements = itemSelectedTxt.toString();
     }
 
 

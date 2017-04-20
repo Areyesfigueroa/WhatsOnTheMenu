@@ -7,6 +7,14 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
+    <!--String Header Constants-->
+    <string name="proteins_header">Protein</string>
+    <string name="vegetables_header">Vegetables</string>
+    <string name="starch_header">Starch</string>
+    <string name="condiments_header">Condiments</string>
+    
+    <string name="Poop">poop</string>
+
     <!--Spinner Prototype Static Array TODO: Make in java for dynamic implementation-->
     <string-array name="ProteinsArray">
         <item>Meats</item>

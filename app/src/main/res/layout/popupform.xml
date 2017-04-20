@@ -6,7 +6,7 @@
 
     <!--Title Displays the header-->
     <TextView
-        android:id="@+id/dynamic_food_group_text"
+        android:id="@+id/form_header_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dynamic Food Group Text"
@@ -19,7 +19,7 @@
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:layout_below="@+id/dynamic_food_group_text"
+        android:layout_below="@+id/form_header_text"
         android:background="@color/colorAccent"/>
 
     <!--Form Contents-->
@@ -98,21 +98,21 @@
 
     <!--Enter Calories Counter Content-->
     <TextView
-        android:id="@+id/calories_header_text"
+        android:id="@+id/servings_header_text"
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/line_separator_text3"
-        android:text="Enter Calories:"
+        android:text="Enter Total Servings:"
         android:textSize="25dp"
         android:textColor="@color/colorBasicWhite" />
 
     <EditText
-        android:id="@+id/input_calories"
+        android:id="@+id/input_servings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/calories_header_text"
+        android:layout_below="@+id/servings_header_text"
         android:ems="10"
         android:inputType="number"
         android:text="0" />
@@ -125,7 +125,7 @@
         android:textSize="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/input_calories"/>
+        android:layout_below="@id/input_servings"/>
 
     <Button
         android:id="@+id/cancel_button"
@@ -133,6 +133,6 @@
         android:textSize="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/input_calories"
+        android:layout_below="@+id/input_servings"
         android:layout_toEndOf="@+id/create_button" />
 </RelativeLayout>
