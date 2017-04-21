@@ -1,6 +1,7 @@
 package edu.afigueroacogswell.whatsonthemenu;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -26,6 +27,7 @@ import java.util.Enumeration;
 
 public class PopUpForm extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener
 {
+
    // public static String headerString;
     public static Refrigerator.FoodTypes foodTypes;
 
@@ -115,7 +117,6 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
 
     }
 
-
     /*
     * Button Listener functions
     * */
@@ -142,7 +143,8 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
                 instance.add(foodItem.name, foodItem);
 
                 //Add to ingredient Spinners
-                AddIngredients.addToSpinners(foodItem.getName(), foodTypes);
+                AddIngredients.getInstance().addToSpinners(foodItem.getName(), foodTypes);
+
 
                 //closes activity
                 this.finish();

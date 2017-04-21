@@ -16,8 +16,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import static android.R.attr.contextClickable;
 import static android.R.attr.type;
 
 /*
@@ -29,6 +31,19 @@ import static android.R.attr.type;
 * */
 public class AddIngredients extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
+    private static AddIngredients addIngredients = new AddIngredients();
+
+    /* A private Constructor prevents any other
+     * class from instantiating.
+     */
+    protected AddIngredients()
+    {
+
+    }
+    /* Static 'instance' method so that you can call it without instantiating*/
+    public static AddIngredients getInstance( ) {
+        return addIngredients;
+    }
     /*Global References
     * */
     Spinner spinner;
@@ -39,24 +54,18 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
 
 
     /*
-    * Testing Refrigerator Enum Instances.
-    * */
-
-
-    /*
     * Dynamic Spinner variables
     * */
-    private static ArrayList<String> proteinArrList = new ArrayList<>();
-    private static ArrayList<String> vegetablesArrList = new ArrayList<>();
-    private static ArrayList<String> starchArrList = new ArrayList<>();
-    private static ArrayList<String> condimentsArrList = new ArrayList<>();
+    private ArrayList<String> proteinArrList = new ArrayList<>();
+    private ArrayList<String> vegetablesArrList = new ArrayList<>();
+    private ArrayList<String> starchArrList = new ArrayList<>();
+    private ArrayList<String> condimentsArrList = new ArrayList<>();
 
-    Spinner proteinSpinner;
-    Spinner vegetableSpinner;
-    Spinner starchSpinner;
-    Spinner condimentsSpinner;
 
-    public AddIngredients(){}
+    private Spinner proteinSpinner;
+    private Spinner vegetableSpinner;
+    private Spinner starchSpinner;
+    private Spinner condimentsSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,25 +75,6 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
         /*
         * Button SetUp
         * */
-        initButtons();
-
-        /*
-        * Toolbar set up
-        * */
-        initToolBar();
-
-        /*
-        * Resource ID for spinner initialization.
-        * */
-        int spinnerIDs[] = {R.id.Proteins, R.id.Vegetables, R.id.Starch, R.id.Condiments}; //instance id of the spinners.
-        int spinnerArrs[] = {R.array.ProteinsArray, R.array.VegetablesArray, R.array.StarchArray, R.array.CondimentsArray}; //default values.
-
-        initSpinners(spinnerIDs, spinnerArrs);
-    }
-
-
-    private void initButtons()
-    {
         addToProteinButton = (Button) findViewById(R.id.add_to_proteins_button);
         addToVegetablesButton = (Button) findViewById(R.id.add_to_vegetables_button);
         addToStarchButton = (Button) findViewById(R.id.add_to_starch_button);
@@ -94,38 +84,57 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
         addToVegetablesButton.setOnClickListener(this);
         addToStarchButton.setOnClickListener(this);
         addToCondimentsButton.setOnClickListener(this);
-    }
 
-    private void initToolBar()
-    {
+        /*
+        * Toolbar set up
+        * */
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
 
-    /*
-    * Testing
-    * */
-    void initSpinners()
-    {
+        /*
+        * Init Dynamic Spinners
+        * */
+
         proteinSpinner = (Spinner) findViewById(R.id.Proteins);
+        proteinArrList.add("Test1");
+
         vegetableSpinner = (Spinner) findViewById(R.id.Vegetables);
+        vegetablesArrList.add("Test2");
+
         starchSpinner = (Spinner) findViewById(R.id.Starch);
+        starchArrList.add("Test3");
+
         condimentsSpinner = (Spinner) findViewById(R.id.Condiments);
+        condimentsArrList.add("Test4");
 
-        //dynamic
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter); //set the adpater for the spinner
 
-        //static
-        spinner.setOnItemSelectedListener(this); //Stating which class is responsible for handling the listeners.
+        //ADAPTER SET UP
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, proteinArrList);
+        proteinSpinner.setAdapter(adapter1);
+        adapter1.add("PENIS");
+        adapter1.notifyDataSetChanged();
+        proteinSpinner.setOnItemSelectedListener(this);
+
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, vegetablesArrList);
+        vegetableSpinner.setAdapter(adapter2);
+        //vegetableSpinner.setOnItemSelectedListener(this);
+
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, starchArrList);
+        starchSpinner.setAdapter(adapter3);
+        //starchSpinner.setOnItemSelectedListener(this);
+
+        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, condimentsArrList);
+        condimentsSpinner.setAdapter(adapter4);
+        //ondimentsSpinner.setOnItemSelectedListener(this);
     }
 
     /*
     * Affects the class not the instance.
     * */
-    protected static void addToSpinners(String foodName, Refrigerator.FoodTypes foodType)
+    public void addToSpinners(String foodName, Refrigerator.FoodTypes foodType)
     {
         switch(foodType)
         {
@@ -143,6 +152,8 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
                 break;
             case PROTEINS:
                 Log.d(Refrigerator.FoodTypes.PROTEINS.name(), "Executed");
+                proteinArrList.add(foodType.toString());
+                //updateAdapter(proteinArrList, proteinSpinner);
 
                 break;
             case CONFECTIONS:
@@ -198,8 +209,8 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
                 Log.d("condiments_button", "Executed");
                 PopUpForm.foodTypes = Refrigerator.FoodTypes.CONDIMENTS;
                 startActivity(new Intent(AddIngredients.this, PopUpForm.class));
-
                 break;
+
             default:
                 break;
         }
@@ -230,9 +241,6 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
         }
     }
 
-
-
-
     /*
     * Button listener for menu items
     * */
@@ -260,13 +268,12 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
         return super.onOptionsItemSelected(item);
     }
 
-
     /* Spinner Listener Functions
     * */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        TextView itemSelectedTxt = (TextView) view;
-        Toast.makeText(this, "You Selected: " + itemSelectedTxt.getText(), Toast.LENGTH_SHORT).show();
+        //TextView itemSelectedTxt = (TextView) view;
+        //Toast.makeText(this, "You Selected: ", Toast.LENGTH_SHORT).show();
     }
 
     @Override
