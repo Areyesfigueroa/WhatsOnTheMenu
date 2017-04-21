@@ -1,6 +1,7 @@
 package edu.afigueroacogswell.whatsonthemenu;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,11 +29,7 @@ public class Refrigerator extends AppCompatActivity
         return refrigerator;
     }
 
-    //Header Strings
-    final static String PROTEINS_HEADER = "Proteins";
-    final static String VEGETABLES_HEADER = "Vegetables";
-    final static String STARCH_HEADER = "Starch";
-    final static String CONDIMENTS_HEADER = "Condiments";
+    private final String TAG = "Refrigerator Class: ";
 
     //Test Before Changing Anything
     public enum FoodTypes
@@ -40,48 +37,49 @@ public class Refrigerator extends AppCompatActivity
         //THE NAMES CAN BE USED AS ID's instead of literal strings
         DAIRY("Dairy"), FRUITS("Fruits"), STARCH("Starch"), PROTEINS("Proteins"), CONFECTIONS("Confections"), VEGETABLES("Vegetables"), LIQUIDS("Liquids"), CONDIMENTS("Condiments");
 
-        private final String id;
+        private final String stringName;
         private Map<String, FoodItem> food = new HashMap<String, FoodItem>();
 
         private FoodTypes(String id)
         {
-            this.id = id;
+            this.stringName = id;
         }
 
-        public String getID()
+        @Override
+        public String toString()
         {
-            return id;
+            return stringName;
         }
 
         /*
         * food map Wrapper methods
         * */
-        private void add(String foodName, FoodItem foodItem)
+        public void add(String foodName, FoodItem foodItem)
         {
             food.put(foodName, foodItem);
         }
 
-        private void overwrite(String foodName, FoodItem foodItem)
+        public void overwrite(String foodName, FoodItem foodItem)
         {
             food.put(foodName, foodItem);
         }
 
-        private void remove(String key)
+        public void remove(String key)
         {
             food.remove(key);
         }
 
-        private FoodItem getFoodElement(String key)
+        public FoodItem getFoodElement(String key)
         {
             return food.get(key);
         }
 
-        private boolean isEmpty()
+        public boolean isEmpty()
         {
             return food.isEmpty();
         }
 
-        private boolean contains(String key)
+        public boolean contains(String key)
         {
             if(food.get(key) != null)
                 return true;
@@ -89,78 +87,32 @@ public class Refrigerator extends AppCompatActivity
                 return false;
         }
 
-        private Map<String, FoodItem> getFoodMap()
+        public Map<String, FoodItem> getFoodMap()
         {
             return food;
         }
     }
 
-    private void testing()
-    {
-        FoodItem milk = new FoodItem();
-        FoodTypes dairy = FoodTypes.DAIRY;
-        dairy.getID();
-        dairy.add(milk.getName(), milk);
-    }
-
-    private Map<String, FoodItem> proteinsMap = new HashMap<String, FoodItem>();
-    private Map<String, FoodItem> vegetablesMap = new HashMap<String, FoodItem>();
-    private Map<String, FoodItem> starchMap = new HashMap<String, FoodItem>();
-    private Map<String, FoodItem> condimentsMap = new HashMap<String, FoodItem>();
-
-
-    //TODO: Test that items are going into the refrigerator.
-    protected void addFoodItem(FoodItem fItem, String foodType)
-    {
-        if (PROTEINS_HEADER.equals(foodType))
-            proteinsMap.put(fItem.getName(), fItem);
-
-        if(VEGETABLES_HEADER.equals(foodType))
-            vegetablesMap.put(fItem.getName(), fItem);
-
-        if(STARCH_HEADER.equals(foodType))
-            starchMap.put(fItem.getName(), fItem);
-
-        if(CONDIMENTS_HEADER.equals(foodType))
-            condimentsMap.put(fItem.getName(), fItem);
-    }
 
     /*
-    * SETTERS for dictionary elements.
+    * Debugging Methods
     * */
-    public void setProteinsMapElem(String key, FoodItem value) {
-        this.proteinsMap.put(key, value); //Replace
+    public void printEntry(FoodTypes type, String key)
+    {
+        Log.d(TAG, type.getFoodElement(key).getName());
     }
 
-    public void setVegetablesMapElem(String key, FoodItem value) {
-        this.vegetablesMap.put(key, value);
-    }
-
-    public void setStarchMapElem(String key, FoodItem value) {
-        this.starchMap.put(key, value);
-    }
-
-    public void setCondimentsMapElem(String key, FoodItem value) {
-        this.condimentsMap.put(key, value);
-    }
-
-    /*
-    * GETTERS, TODO: test to see if the setters are obsolete.
-    * */
-    public Map<String, FoodItem> getProteinsMap() {
-        return proteinsMap;
-    }
-
-    public Map<String, FoodItem> getVegetablesMap() {
-        return vegetablesMap;
-    }
-
-    public Map<String, FoodItem> getStarchMap() {
-        return starchMap;
-    }
-
-    public Map<String, FoodItem> getCondimentsMap() {
-        return condimentsMap;
+    public void printRefrigerator()
+    {
+        for (FoodTypes type: FoodTypes.values())
+        {
+            Log.d(TAG, type.name());
+            Log.d("KEY", "VALUE");
+            for (Map.Entry<String, FoodItem> entry: type.getFoodMap().entrySet())
+            {
+                Log.d("Entry: ", "\t" + entry.getKey() +", "+ entry.getValue().getName()+"Item");
+            }
+        }
     }
 }
 

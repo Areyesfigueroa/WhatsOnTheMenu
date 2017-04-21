@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static android.R.attr.type;
+
 /*
 * TODO: Create the Toolbar so that it can display on every activity.
 *
@@ -34,6 +36,12 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
     Button addToVegetablesButton;
     Button addToStarchButton;
     Button addToCondimentsButton;
+
+
+    /*
+    * Testing Refrigerator Enum Instances.
+    * */
+
 
     /*
     * Dynamic Spinner variables
@@ -117,23 +125,41 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
     /*
     * Affects the class not the instance.
     * */
-    protected static void addToSpinners(String name, String foodType)
+    protected static void addToSpinners(String foodName, Refrigerator.FoodTypes foodType)
     {
         switch(foodType)
         {
-            case Refrigerator.PROTEINS_HEADER:
-                proteinArrList.add(name);
+            case DAIRY:
+                Log.d(Refrigerator.FoodTypes.DAIRY.name(), "Executed");
+
                 break;
-            case Refrigerator.VEGETABLES_HEADER:
-                vegetablesArrList.add(name);
+            case FRUITS:
+                Log.d(Refrigerator.FoodTypes.FRUITS.name(), "Executed");
+
                 break;
-            case Refrigerator.STARCH_HEADER:
-                starchArrList.add(name);
+            case STARCH:
+                Log.d(Refrigerator.FoodTypes.STARCH.name(), "Executed");
+
                 break;
-            case Refrigerator.CONDIMENTS_HEADER:
-                condimentsArrList.add(name);
+            case PROTEINS:
+                Log.d(Refrigerator.FoodTypes.PROTEINS.name(), "Executed");
+
                 break;
-            default:
+            case CONFECTIONS:
+                Log.d(Refrigerator.FoodTypes.CONFECTIONS.name(), "Executed");
+
+                break;
+            case VEGETABLES:
+                Log.d(Refrigerator.FoodTypes.VEGETABLES.name(), "Executed");
+
+                break;
+            case LIQUIDS:
+                Log.d(Refrigerator.FoodTypes.LIQUIDS.name(), "Executed");
+
+                break;
+            case CONDIMENTS:
+                Log.d(Refrigerator.FoodTypes.CONDIMENTS.name(), "Executed");
+
                 break;
         }
     }
@@ -150,27 +176,27 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
             case R.id.add_to_proteins_button:
                 //do code
                 Log.d("proteins_button", "Executed");
-                PopUpForm.headerString = Refrigerator.PROTEINS_HEADER;
+                PopUpForm.foodTypes = Refrigerator.FoodTypes.PROTEINS;
                 startActivity(new Intent(AddIngredients.this, PopUpForm.class));
 
                 break;
             case R.id.add_to_vegetables_button:
                 //do code
                 Log.d("vegetables_button", "Executed");
-                PopUpForm.headerString = Refrigerator.VEGETABLES_HEADER;
+                PopUpForm.foodTypes = Refrigerator.FoodTypes.VEGETABLES;
                 startActivity(new Intent(AddIngredients.this, PopUpForm.class));
                 break;
             case R.id.add_to_starch_button:
                 //do code
                 Log.d("starch_button", "Executed");
-                PopUpForm.headerString = Refrigerator.STARCH_HEADER;
+                PopUpForm.foodTypes = Refrigerator.FoodTypes.STARCH;
                 startActivity(new Intent(AddIngredients.this, PopUpForm.class));
 
                 break;
             case R.id.add_to_condiments_button:
                 //do code
                 Log.d("condiments_button", "Executed");
-                PopUpForm.headerString = Refrigerator.CONDIMENTS_HEADER;
+                PopUpForm.foodTypes = Refrigerator.FoodTypes.CONDIMENTS;
                 startActivity(new Intent(AddIngredients.this, PopUpForm.class));
 
                 break;

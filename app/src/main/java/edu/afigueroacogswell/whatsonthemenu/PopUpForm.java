@@ -26,7 +26,12 @@ import java.util.Enumeration;
 
 public class PopUpForm extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener
 {
-    public static String headerString;
+   // public static String headerString;
+    public static Refrigerator.FoodTypes foodTypes;
+
+    //Debugging
+    private final String TAG = this.getClass().getName();
+
     TextView headerText;
 
     //Input Content
@@ -57,7 +62,7 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
         * Set up Header for form
         * */
         headerText = (TextView) findViewById(R.id.form_header_text);
-        headerText.setText(headerString);
+        headerText.setText(foodTypes.toString());
 
         /*
         * Set Form Input Contents
@@ -122,6 +127,7 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
             case R.id.create_button:
                 Log.d("create_button", "Executed");
                 //TODO: Check for exceptions if user does not enter anything.
+
                 //Get User Input
                 inputFoodName = nameEditText.getText().toString();
                 inputPortionSize = Float.parseFloat(portionsEditText.getText().toString());
@@ -129,12 +135,20 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
 
                 //Pass User inputs as arguments to the food container. Then pass food container to the refrigerator class.
                 FoodItem foodItem = new FoodItem(inputFoodName, inputPortionSize, inputUnitMeasurements, inputTotalServings);
-                Refrigerator.getInstance().addFoodItem(foodItem, headerString);
-                AddIngredients.addToSpinners(foodItem.getName(), headerString);
-                this.finish(); //closes activity
+
+                //Add to Refrigerator Enum Singleton
+                Refrigerator.FoodTypes instance;
+                instance = Refrigerator.FoodTypes.valueOf(foodTypes.name());
+                instance.add(foodItem.name, foodItem);
+
+                //Add to ingredient Spinners
+                AddIngredients.addToSpinners(foodItem.getName(), foodTypes);
+
+                //closes activity
+                this.finish();
                 break;
             case R.id.cancel_button:
-                Log.d("cancel_button", "Executed");
+                Log.d(TAG, "\tcancel_button" + " Executed");
                 this.finish();
                 break;
             default:
