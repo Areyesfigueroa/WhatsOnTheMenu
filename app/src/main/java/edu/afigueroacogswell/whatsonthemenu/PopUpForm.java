@@ -130,6 +130,7 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
                 //Pass User inputs as arguments to the food container. Then pass food container to the refrigerator class.
                 FoodItem foodItem = new FoodItem(inputFoodName, inputPortionSize, inputUnitMeasurements, inputTotalServings);
                 Refrigerator.getInstance().addFoodItem(foodItem, headerString);
+                AddIngredients.addToSpinners(foodItem.getName(), headerString);
                 this.finish(); //closes activity
                 break;
             case R.id.cancel_button:

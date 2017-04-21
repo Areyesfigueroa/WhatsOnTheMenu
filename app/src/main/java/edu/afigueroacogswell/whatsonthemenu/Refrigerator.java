@@ -29,10 +29,79 @@ public class Refrigerator extends AppCompatActivity
     }
 
     //Header Strings
-    final static String proteinsHeader = "Proteins";
-    final static String vegetablesHeader = "Vegetables";
-    final static String starchHeader = "Starch";
-    final static String condimentsHeader = "Condiments";
+    final static String PROTEINS_HEADER = "Proteins";
+    final static String VEGETABLES_HEADER = "Vegetables";
+    final static String STARCH_HEADER = "Starch";
+    final static String CONDIMENTS_HEADER = "Condiments";
+
+    //Test Before Changing Anything
+    public enum FoodTypes
+    {
+        //THE NAMES CAN BE USED AS ID's instead of literal strings
+        DAIRY("Dairy"), FRUITS("Fruits"), STARCH("Starch"), PROTEINS("Proteins"), CONFECTIONS("Confections"), VEGETABLES("Vegetables"), LIQUIDS("Liquids"), CONDIMENTS("Condiments");
+
+        private final String id;
+        private Map<String, FoodItem> food = new HashMap<String, FoodItem>();
+
+        private FoodTypes(String id)
+        {
+            this.id = id;
+        }
+
+        public String getID()
+        {
+            return id;
+        }
+
+        /*
+        * food map Wrapper methods
+        * */
+        private void add(String foodName, FoodItem foodItem)
+        {
+            food.put(foodName, foodItem);
+        }
+
+        private void overwrite(String foodName, FoodItem foodItem)
+        {
+            food.put(foodName, foodItem);
+        }
+
+        private void remove(String key)
+        {
+            food.remove(key);
+        }
+
+        private FoodItem getFoodElement(String key)
+        {
+            return food.get(key);
+        }
+
+        private boolean isEmpty()
+        {
+            return food.isEmpty();
+        }
+
+        private boolean contains(String key)
+        {
+            if(food.get(key) != null)
+                return true;
+            else
+                return false;
+        }
+
+        private Map<String, FoodItem> getFoodMap()
+        {
+            return food;
+        }
+    }
+
+    private void testing()
+    {
+        FoodItem milk = new FoodItem();
+        FoodTypes dairy = FoodTypes.DAIRY;
+        dairy.getID();
+        dairy.add(milk.getName(), milk);
+    }
 
     private Map<String, FoodItem> proteinsMap = new HashMap<String, FoodItem>();
     private Map<String, FoodItem> vegetablesMap = new HashMap<String, FoodItem>();
@@ -43,16 +112,16 @@ public class Refrigerator extends AppCompatActivity
     //TODO: Test that items are going into the refrigerator.
     protected void addFoodItem(FoodItem fItem, String foodType)
     {
-        if (proteinsHeader.equals(foodType))
+        if (PROTEINS_HEADER.equals(foodType))
             proteinsMap.put(fItem.getName(), fItem);
 
-        if(vegetablesHeader.equals(foodType))
+        if(VEGETABLES_HEADER.equals(foodType))
             vegetablesMap.put(fItem.getName(), fItem);
 
-        if(starchHeader.equals(foodType))
+        if(STARCH_HEADER.equals(foodType))
             starchMap.put(fItem.getName(), fItem);
 
-        if(condimentsHeader.equals(foodType))
+        if(CONDIMENTS_HEADER.equals(foodType))
             condimentsMap.put(fItem.getName(), fItem);
     }
 

@@ -1,6 +1,5 @@
 package edu.afigueroacogswell.whatsonthemenu;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -17,7 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Dictionary;
+import java.util.ArrayList;
 
 /*
 * TODO: Create the Toolbar so that it can display on every activity.
@@ -36,6 +35,19 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
     Button addToStarchButton;
     Button addToCondimentsButton;
 
+    /*
+    * Dynamic Spinner variables
+    * */
+    private static ArrayList<String> proteinArrList = new ArrayList<>();
+    private static ArrayList<String> vegetablesArrList = new ArrayList<>();
+    private static ArrayList<String> starchArrList = new ArrayList<>();
+    private static ArrayList<String> condimentsArrList = new ArrayList<>();
+
+    Spinner proteinSpinner;
+    Spinner vegetableSpinner;
+    Spinner starchSpinner;
+    Spinner condimentsSpinner;
+
     public AddIngredients(){}
 
     @Override
@@ -46,23 +58,12 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
         /*
         * Button SetUp
         * */
-        addToProteinButton = (Button) findViewById(R.id.add_to_proteins_button);
-        addToVegetablesButton = (Button) findViewById(R.id.add_to_vegetables_button);
-        addToStarchButton = (Button) findViewById(R.id.add_to_starch_button);
-        addToCondimentsButton = (Button) findViewById(R.id.add_to_condiments_button);
-
-        addToProteinButton.setOnClickListener(this);
-        addToVegetablesButton.setOnClickListener(this);
-        addToStarchButton.setOnClickListener(this);
-        addToCondimentsButton.setOnClickListener(this);
+        initButtons();
 
         /*
         * Toolbar set up
         * */
-        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        initToolBar();
 
         /*
         * Resource ID for spinner initialization.
@@ -73,6 +74,69 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
         initSpinners(spinnerIDs, spinnerArrs);
     }
 
+
+    private void initButtons()
+    {
+        addToProteinButton = (Button) findViewById(R.id.add_to_proteins_button);
+        addToVegetablesButton = (Button) findViewById(R.id.add_to_vegetables_button);
+        addToStarchButton = (Button) findViewById(R.id.add_to_starch_button);
+        addToCondimentsButton = (Button) findViewById(R.id.add_to_condiments_button);
+
+        addToProteinButton.setOnClickListener(this);
+        addToVegetablesButton.setOnClickListener(this);
+        addToStarchButton.setOnClickListener(this);
+        addToCondimentsButton.setOnClickListener(this);
+    }
+
+    private void initToolBar()
+    {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    /*
+    * Testing
+    * */
+    void initSpinners()
+    {
+        proteinSpinner = (Spinner) findViewById(R.id.Proteins);
+        vegetableSpinner = (Spinner) findViewById(R.id.Vegetables);
+        starchSpinner = (Spinner) findViewById(R.id.Starch);
+        condimentsSpinner = (Spinner) findViewById(R.id.Condiments);
+
+        //dynamic
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter); //set the adpater for the spinner
+
+        //static
+        spinner.setOnItemSelectedListener(this); //Stating which class is responsible for handling the listeners.
+    }
+
+    /*
+    * Affects the class not the instance.
+    * */
+    protected static void addToSpinners(String name, String foodType)
+    {
+        switch(foodType)
+        {
+            case Refrigerator.PROTEINS_HEADER:
+                proteinArrList.add(name);
+                break;
+            case Refrigerator.VEGETABLES_HEADER:
+                vegetablesArrList.add(name);
+                break;
+            case Refrigerator.STARCH_HEADER:
+                starchArrList.add(name);
+                break;
+            case Refrigerator.CONDIMENTS_HEADER:
+                condimentsArrList.add(name);
+                break;
+            default:
+                break;
+        }
+    }
 
     /*
     * Handle add_to_Button_Click Listeners
@@ -86,27 +150,27 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
             case R.id.add_to_proteins_button:
                 //do code
                 Log.d("proteins_button", "Executed");
-                PopUpForm.headerString = Refrigerator.proteinsHeader;
+                PopUpForm.headerString = Refrigerator.PROTEINS_HEADER;
                 startActivity(new Intent(AddIngredients.this, PopUpForm.class));
 
                 break;
             case R.id.add_to_vegetables_button:
                 //do code
                 Log.d("vegetables_button", "Executed");
-                PopUpForm.headerString = Refrigerator.vegetablesHeader;
+                PopUpForm.headerString = Refrigerator.VEGETABLES_HEADER;
                 startActivity(new Intent(AddIngredients.this, PopUpForm.class));
                 break;
             case R.id.add_to_starch_button:
                 //do code
                 Log.d("starch_button", "Executed");
-                PopUpForm.headerString = Refrigerator.starchHeader;
+                PopUpForm.headerString = Refrigerator.STARCH_HEADER;
                 startActivity(new Intent(AddIngredients.this, PopUpForm.class));
 
                 break;
             case R.id.add_to_condiments_button:
                 //do code
                 Log.d("condiments_button", "Executed");
-                PopUpForm.headerString = Refrigerator.condimentsHeader;
+                PopUpForm.headerString = Refrigerator.CONDIMENTS_HEADER;
                 startActivity(new Intent(AddIngredients.this, PopUpForm.class));
 
                 break;
@@ -139,6 +203,8 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
             spinner.setOnItemSelectedListener(this); //Stating which class is responsible for handling the listeners.
         }
     }
+
+
 
 
     /*
