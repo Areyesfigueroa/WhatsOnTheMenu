@@ -8,41 +8,14 @@
     <string name="drawer_close">Close</string>
 
     <!--String Header Constants-->
-    <string name="proteins_header">Protein</string>
-    <string name="vegetables_header">Vegetables</string>
+    <string name="dairy_header">Dairy</string>
+    <string name="fruits_header">Fruits</string>
     <string name="starch_header">Starch</string>
+    <string name="proteins_header">Protein</string>
+    <string name="sugars_header">Sugars</string>
+    <string name="vegetables_header">Vegetables</string>
+    <string name="liquids_header">Liquids</string>
     <string name="condiments_header">Condiments</string>
-    
-    <string name="Poop">poop</string>
-
-    <!--Spinner Prototype Static Array TODO: Make in java for dynamic implementation-->
-    <string-array name="ProteinsArray">
-        <item>Meats</item>
-        <item>Chicken</item>
-        <item>Seafood</item>
-        <item>Add Protein Item</item>
-    </string-array>
-
-    <string-array name="VegetablesArray">
-        <item>Broccoly</item>
-        <item>Mushrooms</item>
-        <item>Spinach</item>
-        <item>Add Vegeteble Item</item>
-    </string-array>
-
-    <string-array name="StarchArray">
-        <item>Rice</item>
-        <item>Pasta</item>
-        <item>Potatoes</item>
-        <item>Add Starch Item</item>
-    </string-array>
-
-    <string-array name="CondimentsArray">
-        <item>Ketchup</item>
-        <item>Mayonnaise</item>
-        <item>Mustard</item>
-        <item>Add Condiment Item</item>
-    </string-array>
     
     <!-- Fragment Layout String Variables-->
     <string name="hello_blank_fragment">Hello blank fragment</string>

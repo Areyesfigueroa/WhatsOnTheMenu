@@ -1,161 +1,309 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
-    <!--App Bar-->
-    <include
-        android:id="@+id/app_bar"
-        layout="@layout/app_bar"></include>
-
-
-    <!--Activity Title-->
-    <TextView
-        android:id="@+id/add_ingredients_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Refrigerator"
-        android:textColor="@color/colorBasicWhite"
-        android:textSize="30dp"
-        android:layout_below="@+id/app_bar"/>
-
-
-    <!--Line Separator-->
-    <TextView
-        android:id="@+id/line_separator"
-        android:layout_marginTop="5dp"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:layout_below="@+id/add_ingredients_title"
-        android:background="@color/colorAccent"/>
+        android:layout_height="match_parent">
 
-    <!--Text Headers-->
-    <TextView
-        android:id="@+id/proteins_text"
-        android:text="Proteins"
-        android:textColor="@color/colorBasicWhite"
-        android:textSize="25dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/add_to_proteins_button"
-        android:layout_alignParentStart="true" />
+        <!--App Bar-->
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar"></include>
 
-    <TextView
-        android:id="@+id/vegetables_text"
-        android:text="Vegetables"
-        android:textColor="@color/colorBasicWhite"
-        android:textSize="25dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/add_to_vegetables_button"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:id="@+id/starch_text"
-        android:text="Starch"
-        android:textColor="@color/colorBasicWhite"
-        android:textSize="25dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/add_to_starch_button"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:id="@+id/condiments_text"
-        android:text="Condiments"
-        android:textColor="@color/colorBasicWhite"
-        android:textSize="25dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/add_to_condiments_button"
-        android:layout_alignParentStart="true" />
-
-    <!--Spinners-->
-    <!--TODO: Have the base containers in it. Add button at the end of the spinner.-->
-    <Spinner
-        android:id="@+id/Proteins"
-        android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorBasicGreen"
-        android:layout_below="@+id/line_separator"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/add_to_proteins_button"></Spinner>
-
-    <Spinner
-        android:id="@+id/Vegetables"
-        android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorBasicGreen"
-        android:layout_below="@+id/Proteins"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/add_to_vegetables_button"></Spinner>
-
-    <Spinner
-        android:id="@+id/Starch"
-        android:layout_marginTop="48dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorBasicGreen"
-        android:layout_below="@+id/Vegetables"
-        android:layout_toEndOf="@+id/add_to_starch_button"></Spinner>
-
-    <Spinner
-        android:id="@+id/Condiments"
-        android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorBasicGreen"
-        android:layout_below="@+id/Starch"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/add_to_condiments_button"></Spinner>
+        <!--Activity Title-->
+        <TextView
+            android:id="@+id/add_ingredients_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Refrigerator"
+            android:textColor="@color/colorBasicWhite"
+            android:textSize="30dp"
+            android:layout_below="@+id/app_bar"/>
 
 
-    <!--Buttons (If i have time. Make it so that You can create spinners dynamically)-->
-    <Button
-        android:id="@+id/add_to_proteins_button"
-        android:text="+"
-        android:textSize="30dp"
-        android:layout_width="50dp"
-        android:background="@color/colorBasicGreen"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/Proteins"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/Proteins" />
 
-    <Button
-        android:id="@+id/add_to_vegetables_button"
-        android:text="+"
-        android:textSize="30dp"
-        android:layout_width="50dp"
-        android:background="@color/colorBasicGreen"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/Vegetables"
-        android:layout_alignBottom="@+id/Vegetables" />
+        <!--Line Separator-->
+        <TextView
+            android:id="@+id/line_separator"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_below="@+id/add_ingredients_title"
+            android:background="@color/colorAccent"/>
 
-    <Button
-        android:id="@+id/add_to_starch_button"
-        android:text="+"
-        android:textSize="30dp"
-        android:layout_width="50dp"
-        android:background="@color/colorBasicGreen"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/Starch"
-        android:layout_alignTop="@+id/Starch" />
 
-    <Button
-        android:id="@+id/add_to_condiments_button"
-        android:text="+"
-        android:textSize="30dp"
-        android:layout_width="50dp"
-        android:background="@color/colorBasicGreen"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/Condiments"
-        android:layout_alignTop="@+id/Condiments"/>
 
-</RelativeLayout>
+        <!--DAIRY HEADER-->
+        <TextView
+            android:id="@+id/dairy_text"
+            android:text="@string/dairy_header"
+            android:textColor="@color/colorBasicWhite"
+            android:textSize="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/add_to_dairy_button"
+            android:layout_alignParentStart="true" />
+        <!--DAIRY SPINNER-->
+        <Spinner
+            android:id="@+id/dairy_spinner"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorBasicGreen"
+            android:layout_below="@+id/line_separator"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/add_to_dairy_button"></Spinner>
+        <!--DAIRY BUTTON-->
+        <Button
+            android:id="@+id/add_to_dairy_button"
+            android:text="+"
+            android:textSize="30dp"
+            android:layout_width="50dp"
+            android:background="@color/colorBasicGreen"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/dairy_spinner"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/dairy_spinner" />
+
+
+
+        <!--FRUITS HEADER-->
+        <TextView
+            android:id="@+id/fruits_text"
+            android:text="@string/fruits_header"
+            android:textColor="@color/colorBasicWhite"
+            android:textSize="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/add_to_fruits_button"
+            android:layout_alignParentStart="true" />
+        <!--FRUITS SPINNER-->
+        <Spinner
+            android:id="@+id/fruits_spinner"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorBasicGreen"
+            android:layout_below="@+id/dairy_spinner"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/add_to_dairy_button"></Spinner>
+        <!--FRUITS BUTTON-->
+        <Button
+            android:id="@+id/add_to_fruits_button"
+            android:text="+"
+            android:textSize="30dp"
+            android:layout_width="50dp"
+            android:background="@color/colorBasicGreen"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/fruits_spinner"
+            android:layout_alignBottom="@+id/fruits_spinner" />
+
+
+
+        <!--STARCH HEADER-->
+        <TextView
+            android:id="@+id/starch_text"
+            android:text="@string/starch_header"
+            android:textColor="@color/colorBasicWhite"
+            android:textSize="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/add_to_starch_button"
+            android:layout_alignParentStart="true" />
+        <!--STAECH SPINNER-->
+        <Spinner
+            android:id="@+id/starch_spinner"
+            android:layout_marginTop="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorBasicGreen"
+            android:layout_below="@+id/fruits_spinner"
+            android:layout_toEndOf="@+id/add_to_starch_button"></Spinner>
+        <!--STARCH BUTTON-->
+        <Button
+            android:id="@+id/add_to_starch_button"
+            android:text="+"
+            android:textSize="30dp"
+            android:layout_width="50dp"
+            android:background="@color/colorBasicGreen"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/starch_spinner"
+            android:layout_alignTop="@+id/starch_spinner" />
+
+
+
+        <!--PROTEINS HEADER-->
+        <TextView
+            android:id="@+id/proteins_text"
+            android:text="@string/proteins_header"
+            android:textColor="@color/colorBasicWhite"
+            android:textSize="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/add_to_proteins_button"
+            android:layout_alignParentStart="true" />
+        <!--PROTEINS SPINNER-->
+        <Spinner
+            android:id="@+id/proteins_spinner"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorBasicGreen"
+            android:layout_below="@+id/starch_spinner"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/add_to_proteins_button"></Spinner>
+        <!--PROTEINS BUTTON-->
+        <Button
+            android:id="@+id/add_to_proteins_button"
+            android:text="+"
+            android:textSize="30dp"
+            android:layout_width="50dp"
+            android:background="@color/colorBasicGreen"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/proteins_spinner"
+            android:layout_alignTop="@+id/proteins_spinner"/>
+
+
+
+        <!--SUGARS HEADER-->
+        <TextView
+            android:id="@+id/sugars_text"
+            android:text="@string/sugars_header"
+            android:textColor="@color/colorBasicWhite"
+            android:textSize="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/add_to_sugars_button"
+            android:layout_alignParentStart="true" />
+        <!--SUGARS SPINNER-->
+        <Spinner
+            android:id="@+id/sugars_spinner"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorBasicGreen"
+            android:layout_below="@+id/proteins_spinner"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/add_to_sugars_button"></Spinner>
+        <!--SUGARS BUTTON-->
+        <Button
+            android:id="@+id/add_to_sugars_button"
+            android:text="+"
+            android:textSize="30dp"
+            android:layout_width="50dp"
+            android:background="@color/colorBasicGreen"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/sugars_spinner"
+            android:layout_alignBottom="@+id/sugars_spinner" />
+
+
+
+        <!--VEGETABLES HEADER-->
+        <TextView
+            android:id="@+id/vegetables_text"
+            android:text="@string/vegetables_header"
+            android:textColor="@color/colorBasicWhite"
+            android:textSize="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/add_to_vegetables_button"
+            android:layout_alignParentStart="true" />
+        <!--VEGETABLES SPINNER-->
+        <Spinner
+            android:id="@+id/vegetables_spinner"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorBasicGreen"
+            android:layout_below="@+id/sugars_spinner"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/add_to_vegetables_button"></Spinner>
+        <!--VEGETABLES BUTTON-->
+        <Button
+            android:id="@+id/add_to_vegetables_button"
+            android:text="+"
+            android:textSize="30dp"
+            android:layout_width="50dp"
+            android:background="@color/colorBasicGreen"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/vegetables_spinner"
+            android:layout_alignTop="@+id/vegetables_spinner"/>
+
+
+
+        <!--LIQUIDS HEADER-->
+        <TextView
+            android:id="@+id/liquids_text"
+            android:text="@string/liquids_header"
+            android:textColor="@color/colorBasicWhite"
+            android:textSize="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/add_to_liquids_button"
+            android:layout_alignParentStart="true" />
+        <!--LIQUIDS SPINNER-->
+        <Spinner
+            android:id="@+id/liquids_spinner"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorBasicGreen"
+            android:layout_below="@+id/vegetables_spinner"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/add_to_liquids_button"></Spinner>
+        <!--LIQUIDS BUTTON-->
+        <Button
+            android:id="@+id/add_to_liquids_button"
+            android:text="+"
+            android:textSize="30dp"
+            android:layout_width="50dp"
+            android:background="@color/colorBasicGreen"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/liquids_spinner"
+            android:layout_alignTop="@+id/liquids_spinner"/>
+
+
+
+        <!--CONDIMENTS HEADER-->
+        <TextView
+            android:id="@+id/condiments_text"
+            android:text="@string/condiments_header"
+            android:textColor="@color/colorBasicWhite"
+            android:textSize="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/add_to_condiments_button"
+            android:layout_alignParentStart="true" />
+        <!--CONDIMENTS SPINNER-->
+        <Spinner
+            android:id="@+id/condiments_spinner"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorBasicGreen"
+            android:layout_below="@+id/liquids_spinner"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/add_to_condiments_button"></Spinner>
+        <!--CONDIMENTS BUTTON-->
+        <Button
+            android:id="@+id/add_to_condiments_button"
+            android:text="+"
+            android:textSize="30dp"
+            android:layout_width="50dp"
+            android:background="@color/colorBasicGreen"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/condiments_spinner"
+            android:layout_alignTop="@+id/condiments_spinner"/>
+
+
+    </RelativeLayout>
+</ScrollView>

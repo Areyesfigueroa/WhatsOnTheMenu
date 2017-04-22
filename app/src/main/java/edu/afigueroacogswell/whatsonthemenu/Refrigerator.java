@@ -6,54 +6,64 @@ import android.util.Log;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by aliel on 4/19/2017.
- */
-
 /*
-* Store on a Database SQL for future use.
+* TODO: Store on a Database SQL for future use.
+* Debug Logs:
 * Non-Static class may need to need to be instantiated in the future.
 * */
 public class Refrigerator extends AppCompatActivity
 {
 
+    //region "GLOBAL VARIABLES"
+    //region "SINGLETON"
     private static Refrigerator refrigerator = new Refrigerator( );
 
-    /* A private Constructor prevents any other
-     * class from instantiating.
-     */
+
+    //A private Constructor prevents any other class from instantiating.
     private Refrigerator() { }
 
-    /* Static 'instance' method so that you can call it without instantiating*/
+
+    //Static 'instance' method so that you can call it without instantiating
     public static Refrigerator getInstance( ) {
         return refrigerator;
     }
 
-    private final String TAG = "Refrigerator Class: ";
+    //endregion "SINGLETON"
 
-    //Test Before Changing Anything
+
+    private final String TAG = "Refrigerator";
+    FoodItem latestFoodItem = new FoodItem();
+    FoodTypes latestFoodType;
+
+
+    //region Class's Enum Class
     public enum FoodTypes
     {
         //THE NAMES CAN BE USED AS ID's instead of literal strings
-        DAIRY("Dairy"), FRUITS("Fruits"), STARCH("Starch"), PROTEINS("Proteins"), CONFECTIONS("Confections"), VEGETABLES("Vegetables"), LIQUIDS("Liquids"), CONDIMENTS("Condiments");
+        DAIRY("Dairy"), FRUITS("Fruits"), STARCH("Starch"), PROTEINS("Proteins"), SUGARS("Sugars"), VEGETABLES("Vegetables"), LIQUIDS("Liquids"), CONDIMENTS("Condiments");
+
 
         private final String stringName;
         private Map<String, FoodItem> food = new HashMap<String, FoodItem>();
 
+
+        //Constructor
         private FoodTypes(String id)
         {
             this.stringName = id;
         }
 
+
+        //Gets the name of constant class and returns the name with first letter uppercase and the rest lowercase.
+        //Its a different way to print the name.
         @Override
         public String toString()
         {
             return stringName;
         }
 
-        /*
-        * food map Wrapper methods
-        * */
+
+        //region "FOOD MAP WRAPPER METHODS"
         public void add(String foodName, FoodItem foodItem)
         {
             food.put(foodName, foodItem);
@@ -91,29 +101,59 @@ public class Refrigerator extends AppCompatActivity
         {
             return food;
         }
+
+        //endregion "FOOD MAP WRAPPER METHODS"
+    }
+
+    //endregion Class's Enum Class
+
+    //endregion "GLOBAL VARIABLES"
+
+    //region "CLASS METHODS"
+
+    //region "SETTERS & GETTERS"
+    public void setLatestFoodItem(FoodItem latestFoodItem) {
+        this.latestFoodItem = latestFoodItem;
     }
 
 
-    /*
-    * Debugging Methods
-    * */
+    public FoodItem getLatestFoodItem() {
+        return latestFoodItem;
+    }
+
+
+    public void setLatestFoodType(FoodTypes latestFoodType) {
+        this.latestFoodType = latestFoodType;
+    }
+
+
+    public FoodTypes getLatestFoodType() {
+        return latestFoodType;
+    }
+
+    //endregion "SETTERS & GETTERS"
+
+    //region "DEBUGGING METHODS"
     public void printEntry(FoodTypes type, String key)
     {
-        Log.d(TAG, type.getFoodElement(key).getName());
+        Log.i(TAG, type.getFoodElement(key).getName());
     }
 
     public void printRefrigerator()
     {
         for (FoodTypes type: FoodTypes.values())
         {
-            Log.d(TAG, type.name());
-            Log.d("KEY", "VALUE");
+            Log.i(TAG, type.name());
             for (Map.Entry<String, FoodItem> entry: type.getFoodMap().entrySet())
             {
-                Log.d("Entry: ", "\t" + entry.getKey() +", "+ entry.getValue().getName()+"Item");
+                Log.i(TAG, "\t" + entry.getKey() +", "+ entry.getValue().getName()+"Item");
             }
         }
     }
+
+    //endregion "DEBUGGING METHODS"
+
+    //endregion "CLASS METHODS"
 }
 
 

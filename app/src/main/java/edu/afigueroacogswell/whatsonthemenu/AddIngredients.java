@@ -13,237 +13,403 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-
-import static android.R.attr.contextClickable;
-import static android.R.attr.type;
 
 /*
 * TODO: Create the Toolbar so that it can display on every activity.
-*
+* TODO: Test to see if it runs.
 * Debug Log:
-* Activity kept crashing because it needed to be implemented or called in the
-* android mainfest file
+* Class has been refactored
 * */
 public class AddIngredients extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
+
+    //region "GLOBAL VARIABLES"
+    //TODO: Get rid of singleton instance.
+    //region "SINGLETON"
     private static AddIngredients addIngredients = new AddIngredients();
 
-    /* A private Constructor prevents any other
-     * class from instantiating.
-     */
-    protected AddIngredients()
-    {
 
-    }
-    /* Static 'instance' method so that you can call it without instantiating*/
+    //A private Constructor prevents any other class from instantiating.
+    protected AddIngredients()
+    {}
+
+
+    //Static 'instance' method so that you can call it without instantiating
     public static AddIngredients getInstance( ) {
         return addIngredients;
     }
-    /*Global References
-    * */
-    Spinner spinner;
-    Button addToProteinButton;
-    Button addToVegetablesButton;
+
+    //endregion "SINGLETON"
+
+
+    //Logcat Log
+    private final String TAG = "AddIngredients";
+
+
+    //Buttons - Initialized onCreate
+    Button addToDairyButton;
+    Button addToFruitsButton;
     Button addToStarchButton;
+    Button addToProteinButton;
+    Button addToSugarsButton;
+    Button addToVegetablesButton;
+    Button addToLiquidsButton;
     Button addToCondimentsButton;
 
 
-    /*
-    * Dynamic Spinner variables
-    * */
-    private ArrayList<String> proteinArrList = new ArrayList<>();
-    private ArrayList<String> vegetablesArrList = new ArrayList<>();
+    //Spinners - Initialized onCreate
+    private Spinner dairySpinner;
+    private Spinner fruitsSpinner;
+    private Spinner starchSpinner;
+    private Spinner proteinSpinner;
+    private Spinner sugarsSpinner;
+    private Spinner vegetableSpinner;
+    private Spinner liquidSpinner;
+    private Spinner condimentsSpinner;
+
+
+    //ArrayList - Initialized onCreate
+    private ArrayList<String> dairyArrList = new ArrayList<>();
+    private ArrayList<String> fruitsArrList = new ArrayList<>();
     private ArrayList<String> starchArrList = new ArrayList<>();
+    private ArrayList<String> proteinsArrList = new ArrayList<>();
+    private ArrayList<String> sugarsArrList = new ArrayList<>();
+    private ArrayList<String> vegetablesArrList = new ArrayList<>();
+    private ArrayList<String> liquidsArrList = new ArrayList<>();
     private ArrayList<String> condimentsArrList = new ArrayList<>();
 
 
-    private Spinner proteinSpinner;
-    private Spinner vegetableSpinner;
-    private Spinner starchSpinner;
-    private Spinner condimentsSpinner;
+    //Adapters - Initialized here
+    private ArrayAdapter<String> dairyAdp;
+    private ArrayAdapter<String> fruitsAdp;
+    private ArrayAdapter<String> starchAdp;
+    private ArrayAdapter<String> proteinsAdp;
+    private ArrayAdapter<String> sugarsAdp;
+    private ArrayAdapter<String> vegetablesAdp;
+    private ArrayAdapter<String> liquidAdp;
+    private ArrayAdapter<String> condimentsAdp;
 
+
+    boolean ignoreFirstResume;
+
+    //endregion "GLOBAL VARIABLES"
+
+
+    //region "ACTIVITY LIFECYCLE METHODS"
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_ingredients);
 
-        /*
-        * Button SetUp
-        * */
-        addToProteinButton = (Button) findViewById(R.id.add_to_proteins_button);
-        addToVegetablesButton = (Button) findViewById(R.id.add_to_vegetables_button);
-        addToStarchButton = (Button) findViewById(R.id.add_to_starch_button);
-        addToCondimentsButton = (Button) findViewById(R.id.add_to_condiments_button);
 
-        addToProteinButton.setOnClickListener(this);
-        addToVegetablesButton.setOnClickListener(this);
-        addToStarchButton.setOnClickListener(this);
-        addToCondimentsButton.setOnClickListener(this);
+        //DEBUG STATE LOG
+        Log.d(TAG, "Create State");
 
-        /*
-        * Toolbar set up
-        * */
+
+        //RESUME SET-UP
+        ignoreFirstResume = true;
+
+
+        //region "TOOLBAR SET-UP"
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        /*
-        * Init Dynamic Spinners
-        * */
-
-        proteinSpinner = (Spinner) findViewById(R.id.Proteins);
-        proteinArrList.add("Test1");
-
-        vegetableSpinner = (Spinner) findViewById(R.id.Vegetables);
-        vegetablesArrList.add("Test2");
-
-        starchSpinner = (Spinner) findViewById(R.id.Starch);
-        starchArrList.add("Test3");
-
-        condimentsSpinner = (Spinner) findViewById(R.id.Condiments);
-        condimentsArrList.add("Test4");
+        //endregion "TOOLBAR SET-UP"
 
 
-        //ADAPTER SET UP
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, proteinArrList);
-        proteinSpinner.setAdapter(adapter1);
-        adapter1.add("PENIS");
-        adapter1.notifyDataSetChanged();
-        proteinSpinner.setOnItemSelectedListener(this);
+        //region "BUTTON SET-UP"
+        addToDairyButton = (Button) findViewById(R.id.add_to_dairy_button);
+        addToFruitsButton = (Button) findViewById(R.id.add_to_fruits_button);
+        addToStarchButton = (Button) findViewById(R.id.add_to_starch_button);
+        addToProteinButton = (Button) findViewById(R.id.add_to_proteins_button);
+        addToSugarsButton = (Button) findViewById(R.id.add_to_sugars_button);
+        addToVegetablesButton = (Button) findViewById(R.id.add_to_vegetables_button);
+        addToLiquidsButton = (Button) findViewById(R.id.add_to_liquids_button);
+        addToCondimentsButton = (Button) findViewById(R.id.add_to_condiments_button);
 
 
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, vegetablesArrList);
-        vegetableSpinner.setAdapter(adapter2);
-        //vegetableSpinner.setOnItemSelectedListener(this);
+        addToDairyButton.setOnClickListener(this);
+        addToFruitsButton.setOnClickListener(this);
+        addToStarchButton.setOnClickListener(this);
+        addToProteinButton.setOnClickListener(this);
+        addToSugarsButton.setOnClickListener(this);
+        addToVegetablesButton.setOnClickListener(this);
+        addToLiquidsButton.setOnClickListener(this);
+        addToCondimentsButton.setOnClickListener(this);
 
-        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, starchArrList);
-        starchSpinner.setAdapter(adapter3);
-        //starchSpinner.setOnItemSelectedListener(this);
+        //endregion "BUTTON SET-UP"
 
-        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, condimentsArrList);
-        condimentsSpinner.setAdapter(adapter4);
-        //ondimentsSpinner.setOnItemSelectedListener(this);
+
+        //region "SPINNER SET-UP"
+        dairySpinner = (Spinner) findViewById(R.id.dairy_spinner);
+        fruitsSpinner = (Spinner) findViewById(R.id.fruits_spinner);
+        starchSpinner = (Spinner) findViewById(R.id.starch_spinner);
+        proteinSpinner = (Spinner) findViewById(R.id.proteins_spinner);
+        sugarsSpinner = (Spinner) findViewById(R.id.sugars_spinner);
+        vegetableSpinner = (Spinner) findViewById(R.id.vegetables_spinner);
+        liquidSpinner = (Spinner) findViewById(R.id.liquids_spinner);
+        condimentsSpinner = (Spinner) findViewById(R.id.condiments_spinner);
+
+
+        //ADD DEFAULT VALUES ONTO ARRAYLIST FOR SPINNERS, TODO: Change second argument to an array. Use the string array to make that its values.
+        initDefaultSpinnerValues(dairyArrList, 3);
+        initDefaultSpinnerValues(fruitsArrList, 3);
+        initDefaultSpinnerValues(starchArrList, 3);
+        initDefaultSpinnerValues(proteinsArrList, 3);
+        initDefaultSpinnerValues(sugarsArrList, 3);
+        initDefaultSpinnerValues(vegetablesArrList, 3);
+        initDefaultSpinnerValues(liquidsArrList, 3);
+        initDefaultSpinnerValues(condimentsArrList, 3);
+
+        //endregion "SPINNER SET-UP"
+
+
+        //region "ADAPTER SET UP"
+        dairyAdp = new ArrayAdapter<> (this, android.R.layout.simple_spinner_dropdown_item, dairyArrList);
+        fruitsAdp = new ArrayAdapter<> (this, android.R.layout.simple_spinner_dropdown_item, fruitsArrList);
+        starchAdp = new ArrayAdapter<> (this, android.R.layout.simple_spinner_dropdown_item, starchArrList);
+        proteinsAdp = new ArrayAdapter<> (this, android.R.layout.simple_spinner_dropdown_item, proteinsArrList);
+        sugarsAdp = new ArrayAdapter<> (this, android.R.layout.simple_spinner_dropdown_item, sugarsArrList);
+        vegetablesAdp = new ArrayAdapter<> (this, android.R.layout.simple_spinner_dropdown_item, vegetablesArrList);
+        liquidAdp = new ArrayAdapter<> (this, android.R.layout.simple_spinner_dropdown_item, liquidsArrList);
+        condimentsAdp = new ArrayAdapter<> (this, android.R.layout.simple_spinner_dropdown_item, condimentsArrList);
+
+        initAdapters(dairyAdp, dairySpinner);
+        initAdapters(fruitsAdp, fruitsSpinner);
+        initAdapters(starchAdp, starchSpinner);
+        initAdapters(proteinsAdp, proteinSpinner);
+        initAdapters(sugarsAdp, sugarsSpinner);
+        initAdapters(vegetablesAdp, vegetableSpinner);
+        initAdapters(liquidAdp, liquidSpinner);
+        initAdapters(condimentsAdp, condimentsSpinner);
+
+        //endregion "ADAPTER SET-UP"
     }
 
-    /*
-    * Affects the class not the instance.
-    * */
+
+    //Runs Everytime we Restart Application
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        Log.i(TAG, "Start State");
+    }
+
+    //Runs When another Activity runs on the ForeGround
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        Log.i(TAG, "Pause State");
+    }
+
+    //Runs Everytime we Restart Application and after Pausing
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        Log.i(TAG, "Resume State");
+
+        //Ignore first resume call
+        if (ignoreFirstResume)
+        {
+            ignoreFirstResume = false;
+            return;
+        }
+        else
+        {
+            FoodItem foodItem = Refrigerator.getInstance().getLatestFoodItem();
+            Refrigerator.FoodTypes foodType = Refrigerator.getInstance().getLatestFoodType();
+
+            if (foodItem != null && foodType != null) {
+
+                addToSpinners(foodItem.getName(), foodType);
+                Log.i(TAG, foodItem.getName() + " added to " + foodType.toString() + " Spinner!");
+            }
+        }
+    }
+
+    //endregion "ACTIVITY LIFECYCLE METHODS"
+
+
+    //region "CLASS METHODS"
+
+    //region "INITIALIZATION METHODS"
+    private void initDefaultSpinnerValues(ArrayList<String> arrayList, int valueAmmount)
+    {
+        for (int i = 0; i < valueAmmount; i++) {
+            arrayList.add("TEST");
+        }
+    }
+
+    private void initAdapters(ArrayAdapter<String> adapter, Spinner spinner)
+    {
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+    }
+
+    //endregion "INITIALIZATION METHODS"
+
+
     public void addToSpinners(String foodName, Refrigerator.FoodTypes foodType)
     {
         switch(foodType)
         {
             case DAIRY:
                 Log.d(Refrigerator.FoodTypes.DAIRY.name(), "Executed");
+                updateAdapter(dairyAdp, dairyArrList, foodName);
+
 
                 break;
             case FRUITS:
-                Log.d(Refrigerator.FoodTypes.FRUITS.name(), "Executed");
+                Log.i(Refrigerator.FoodTypes.FRUITS.name(), "Executed");
+                updateAdapter(fruitsAdp, fruitsArrList, foodName);
+
 
                 break;
             case STARCH:
-                Log.d(Refrigerator.FoodTypes.STARCH.name(), "Executed");
+                Log.i(Refrigerator.FoodTypes.STARCH.name(), "Executed");
+                updateAdapter(starchAdp, starchArrList, foodName);
+
 
                 break;
             case PROTEINS:
-                Log.d(Refrigerator.FoodTypes.PROTEINS.name(), "Executed");
-                proteinArrList.add(foodType.toString());
-                //updateAdapter(proteinArrList, proteinSpinner);
+                Log.i(Refrigerator.FoodTypes.PROTEINS.name(), "Executed");
+                updateAdapter(proteinsAdp, proteinsArrList, foodName);
+
 
                 break;
-            case CONFECTIONS:
-                Log.d(Refrigerator.FoodTypes.CONFECTIONS.name(), "Executed");
+            case SUGARS:
+                Log.i(Refrigerator.FoodTypes.SUGARS.name(), "Executed");
+                updateAdapter(sugarsAdp, sugarsArrList, foodName);
+
 
                 break;
             case VEGETABLES:
-                Log.d(Refrigerator.FoodTypes.VEGETABLES.name(), "Executed");
+                Log.i(Refrigerator.FoodTypes.VEGETABLES.name(), "Executed");
+                updateAdapter(vegetablesAdp, vegetablesArrList, foodName);
+
 
                 break;
             case LIQUIDS:
-                Log.d(Refrigerator.FoodTypes.LIQUIDS.name(), "Executed");
+                Log.i(Refrigerator.FoodTypes.LIQUIDS.name(), "Executed");
+                updateAdapter(liquidAdp, liquidsArrList, foodName);
+
 
                 break;
             case CONDIMENTS:
-                Log.d(Refrigerator.FoodTypes.CONDIMENTS.name(), "Executed");
+                Log.i(Refrigerator.FoodTypes.CONDIMENTS.name(), "Executed");
+                updateAdapter(condimentsAdp, condimentsArrList, foodName);
 
+
+                break;
+
+            default:
+                //TODO: Create toast to know if he/she somehow gets default activated.
                 break;
         }
     }
 
-    /*
-    * Handle add_to_Button_Click Listeners
-    * */
+    private void updateAdapter(ArrayAdapter<String> adapter, ArrayList<String> arrayList, String newItem)
+    {
+        if(adapter == null)
+        {
+            Log.d(TAG, "Adapter is Null");
+            return;
+        }
+        else {
+            arrayList.add(newItem);
+            adapter.notifyDataSetChanged();
+        }
+    }
+    //endregion "CLASS METHODS"
 
+
+    // region "LISTENERS METHODS"
+    //Handles add_to_Button_Click Listeners
     @Override
     public void onClick(View v)
     {
         switch(v.getId())
         {
+            case R.id.add_to_dairy_button:
+                Log.i(TAG, "Dairy Button Executed!");
+                PopUpForm.foodTypes = Refrigerator.FoodTypes.DAIRY;
+                startActivity(new Intent(AddIngredients.this, PopUpForm.class));
+
+
+                break;
+            case R.id.add_to_fruits_button:
+                Log.i(TAG, "Fruits Button Executed!");
+                PopUpForm.foodTypes = Refrigerator.FoodTypes.FRUITS;
+                startActivity(new Intent(AddIngredients.this, PopUpForm.class));
+
+
+                break;
+            case R.id.add_to_starch_button:
+                Log.i(TAG, "Starch Button Executed!");
+                PopUpForm.foodTypes = Refrigerator.FoodTypes.STARCH;
+                startActivity(new Intent(AddIngredients.this, PopUpForm.class));
+
+
+                break;
             case R.id.add_to_proteins_button:
-                //do code
-                Log.d("proteins_button", "Executed");
+                Log.d(TAG, "Proteins Button Executed!");
                 PopUpForm.foodTypes = Refrigerator.FoodTypes.PROTEINS;
                 startActivity(new Intent(AddIngredients.this, PopUpForm.class));
 
+
+                break;
+            case R.id.add_to_sugars_button:
+                Log.i(TAG, "Sugars Button Executed!");
+                PopUpForm.foodTypes = Refrigerator.FoodTypes.SUGARS;
+                startActivity(new Intent(AddIngredients.this, PopUpForm.class));
+
+
                 break;
             case R.id.add_to_vegetables_button:
-                //do code
-                Log.d("vegetables_button", "Executed");
+                Log.d(TAG, "Vegetables Button Executed!");
                 PopUpForm.foodTypes = Refrigerator.FoodTypes.VEGETABLES;
                 startActivity(new Intent(AddIngredients.this, PopUpForm.class));
+
+
                 break;
-            case R.id.add_to_starch_button:
-                //do code
-                Log.d("starch_button", "Executed");
-                PopUpForm.foodTypes = Refrigerator.FoodTypes.STARCH;
+            case R.id.add_to_liquids_button:
+                Log.i(TAG, "Liquids Button Executed!");
+                PopUpForm.foodTypes = Refrigerator.FoodTypes.LIQUIDS;
                 startActivity(new Intent(AddIngredients.this, PopUpForm.class));
 
                 break;
             case R.id.add_to_condiments_button:
                 //do code
-                Log.d("condiments_button", "Executed");
+                Log.d(TAG, "Condiments Button Executed!");
                 PopUpForm.foodTypes = Refrigerator.FoodTypes.CONDIMENTS;
                 startActivity(new Intent(AddIngredients.this, PopUpForm.class));
                 break;
 
             default:
+                //TODO: Create a Toast to deal with default state.
+
+
                 break;
         }
     }
 
-    /*
-    * Handles the Menu Creation set up.
-    * */
+
+    //Handles the Menu Creation set up.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_addingredients, menu);
         return true;
     }
 
-    /*
-    * Initializes all spinners
-    * TODO: Create an adapter that does not create from resources since it limits the array to static strings.
-    * */
-    private void initSpinners(int spinnerIDs[], int spinnerArrs[])
-    {
-        for (int index = 0; index < spinnerIDs.length; index++)
-        {
-            spinner = (Spinner) findViewById(spinnerIDs[index]); //get spinner
 
-            ArrayAdapter adapter = ArrayAdapter.createFromResource(this, spinnerArrs[index], R.layout.support_simple_spinner_dropdown_item); // how to view the slider
-            spinner.setAdapter(adapter); //set the adpater for the spinner
-            spinner.setOnItemSelectedListener(this); //Stating which class is responsible for handling the listeners.
-        }
-    }
-
-    /*
-    * Button listener for menu items
-    * */
+    //Handles button listener for menu items
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -268,8 +434,8 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
         return super.onOptionsItemSelected(item);
     }
 
-    /* Spinner Listener Functions
-    * */
+
+    //Spinner Listener Functions
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         //TextView itemSelectedTxt = (TextView) view;
@@ -280,4 +446,5 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+    //#endregion "LISTENER METHODS"
 }
