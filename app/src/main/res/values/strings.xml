@@ -7,13 +7,15 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
-    <!--Spinner Prototype Static Array TODO: Make in java for dynamic implementation-->
-    <string-array name="ProteinsArray">
-        <item>Meats</item>
-        <item>Chicken</item>
-        <item>Seafood</item>
-        <item>CustomContainer</item>
-    </string-array>
+    <!--String Header Constants-->
+    <string name="dairy_header">Dairy</string>
+    <string name="fruits_header">Fruits</string>
+    <string name="starch_header">Starch</string>
+    <string name="proteins_header">Protein</string>
+    <string name="sugars_header">Sugars</string>
+    <string name="vegetables_header">Vegetables</string>
+    <string name="liquids_header">Liquids</string>
+    <string name="condiments_header">Condiments</string>
     
     <!-- Fragment Layout String Variables-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -21,4 +23,11 @@
     <string name="add_ingredients">Add Ingredients</string>
     <string name="create_menu">Create Menu</string>
     <string name="search">Search</string>
+
+    <!--PopUpFormLayout-->
+    <string-array name="UnitsArray">
+        <item>ounces</item>
+        <item>cup</item>
+    </string-array>
+
 </resources>
