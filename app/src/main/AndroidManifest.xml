@@ -27,6 +27,8 @@
             android:theme="@style/AppTheme.PopUpForm">
         </activity>
 
+        <activity android:name=".JsoupParser"></activity>
+
     </application>
 
 </manifest>

@@ -6,20 +6,29 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity{
 
-    //References
-    private Toolbar toolbar;
+    //Variables
+    private final String TAG = "MainActivity";
 
+    //Navigation
+    Button addIngredientsNavButton;
+    Button createNavButton;
+    Button searchNavButton;
+    Button jsoupNavButton;
+
+    private Toolbar toolbar;
     Spinner spinner;
 
     @Override
@@ -28,15 +37,19 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main_appbar);
 
 
-        /* Finds the toolbar object and sets it to be the new action bar not the default one.
-        * */
+        //Finds the toolbar object and sets it to be the new action bar not the default one.
         toolbar= (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true); // Delete this
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // delete this
 
-        /*Navigation Drawer Initialization
-        * */
+        //BUTTON SET UP
+        addIngredientsNavButton = (Button) findViewById(R.id.add_ingredients_nav_button);
+        createNavButton = (Button) findViewById(R.id.create_menu_nav_button);
+        searchNavButton = (Button) findViewById(R.id.search_nav_button);
+        jsoupNavButton = (Button) findViewById(R.id.jsoup_nav_button); //testing
+
+        //NAVIGATION DRAWER INITIALIZATION
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
 
@@ -53,7 +66,8 @@ public class MainActivity extends AppCompatActivity{
         return true;
     }
 
-    //Functions
+
+
 
     /* This function handles all of the button inputs for the menu layout
     * */
