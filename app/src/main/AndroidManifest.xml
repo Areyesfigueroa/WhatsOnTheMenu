@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.afigueroacogswell.whatsonthemenu">
 
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_next"
@@ -26,6 +28,8 @@
         <activity android:name=".PopUpForm"
             android:theme="@style/AppTheme.PopUpForm">
         </activity>
+
+        <activity android:name=".JsoupParser"></activity>
 
     </application>
 
