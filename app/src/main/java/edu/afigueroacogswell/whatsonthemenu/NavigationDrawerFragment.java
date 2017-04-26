@@ -4,7 +4,9 @@ package edu.afigueroacogswell.whatsonthemenu;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,12 +16,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.sql.Ref;
+import java.util.HashMap;
+import java.util.Map;
 
-public class NavigationDrawerFragment extends Fragment{
+public class NavigationDrawerFragment extends ListFragment implements AdapterView.OnItemClickListener{
 
     /*Global Variables
     * */
@@ -35,6 +46,7 @@ public class NavigationDrawerFragment extends Fragment{
     Button searchNavButton;
     Button jsoupNavButton;
 
+    String[] testingTitleArr;
 
     /*Depending on these values we will close and open the drawer
     * */
@@ -42,17 +54,19 @@ public class NavigationDrawerFragment extends Fragment{
     private boolean mFromSavedInstanceState;
     private View containerView;
 
-
-    /*Constructor
-    * */
-    public NavigationDrawerFragment() {
-        // Required empty public constructor
-    }
+    //Navigation Menu Button ID Constants
+    private final int ADDINGREDIENTS = 0;
+    private final int CREATEMENU = 1;
+    private final int SEARCH = 2;
+    private final int JSOUPPARSER = 3;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        //Populate lis with static array of titles
+        //setListAdapter();
 
         //Check if the user has opened the drawer.
         mUserLearnedDrawer = Boolean.getBoolean(readFromPreferences(getActivity(), KEY_USER_LEARNED_DRAWER, "false"));
@@ -73,6 +87,46 @@ public class NavigationDrawerFragment extends Fragment{
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(), R.array.navigation_drawer,android.R.layout.simple_list_item_1);
+        setListAdapter(adapter);
+        getListView().setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+    {
+        switch (i)
+        {
+            case ADDINGREDIENTS:
+                Toast.makeText(getActivity(), "AddIngredients Button Nav " +i, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(NavigationDrawerFragment.this.getActivity(), AddIngredients.class));
+
+
+                break;
+            case CREATEMENU:
+                Toast.makeText(getActivity(), "Create Menu Button Nav (NOT READY)" +i, Toast.LENGTH_SHORT).show();
+                //startActivity(new Intent(NavigationDrawerFragment.this.getActivity(), AddIngredients.class));
+
+
+                break;
+            case SEARCH:
+                Toast.makeText(getActivity(), "Search Button Nav (NOT READY) " +i, Toast.LENGTH_SHORT).show();
+
+
+                break;
+            case JSOUPPARSER:
+                Toast.makeText(getActivity(), "Jsoup Parser Button Nav " +i, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(NavigationDrawerFragment.this.getActivity(), JsoupParser.class));
+
+
+                break;
+        }
     }
 
     /*App Functions

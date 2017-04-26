@@ -43,11 +43,6 @@ public class MainActivity extends AppCompatActivity{
         getSupportActionBar().setHomeButtonEnabled(true); // Delete this
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // delete this
 
-        //BUTTON SET UP
-        addIngredientsNavButton = (Button) findViewById(R.id.add_ingredients_nav_button);
-        createNavButton = (Button) findViewById(R.id.create_menu_nav_button);
-        searchNavButton = (Button) findViewById(R.id.search_nav_button);
-        jsoupNavButton = (Button) findViewById(R.id.jsoup_nav_button); //testing
 
         //NAVIGATION DRAWER INITIALIZATION
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)

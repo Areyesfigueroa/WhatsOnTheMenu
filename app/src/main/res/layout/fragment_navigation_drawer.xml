@@ -15,13 +15,19 @@
 
 
     <ListView
-        android:id="@id/android:list"
-        android:layout_width="match_parent"
+        android:id="@android:id/list"
+        style="@style/MyCustomToolBarTheme"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="#00FF00"
-        android:drawSelectorOnTop="false"
-        android:layout_weight = "1">
-    </ListView>
+        android:layout_below="@+id/navigation_menu_text"
+        android:background="@color/colorPrimaryDark"
+        android:drawSelectorOnTop="false"></ListView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:id="@android:id/empty"/>
 
     <!--Fragment Content-->
     <TextView
@@ -32,47 +38,5 @@
         android:textColor="@color/colorPrimaryDark"
         android:textSize="30sp"
         android:layout_marginLeft="35dp"/>
-
-    <Button
-        android:id="@+id/add_ingredients_nav_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_ingredients"
-        android:layout_below="@+id/navigation_menu_text"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:id="@+id/create_menu_nav_button"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/create_menu"
-        android:layout_below="@+id/add_ingredients_nav_button"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_alignParentStart="true"/>
-
-    <Button
-        android:id="@+id/search_nav_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/search"
-        android:layout_below="@+id/create_menu_nav_button"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:id="@+id/jsoup_nav_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jsoup Parser"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@+id/search_nav_button"
-        android:layout_alignParentStart="true" />
-
 
 </RelativeLayout>

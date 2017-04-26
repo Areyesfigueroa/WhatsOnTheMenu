@@ -24,6 +24,14 @@
     <string name="create_menu">Create Menu</string>
     <string name="search">Search</string>
 
+    <!--Fragment List String Array-->
+    <string-array name="navigation_drawer">
+        <item>Add Ingredients</item>
+        <item>Create Menu</item>
+        <item>Search</item>
+        <item>Jsoup Parser</item>
+    </string-array>
+
     <!--PopUpFormLayout-->
     <string-array name="UnitsArray">
         <item>ounces</item>
