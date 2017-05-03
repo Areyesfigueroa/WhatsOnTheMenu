@@ -21,8 +21,6 @@ public class Refrigerator extends AppCompatActivity
     FoodItem latestFoodItem = new FoodItem();
     FoodTypes latestFoodType;
 
-
-    //region "SINGLETON"
     private static Refrigerator refrigerator = new Refrigerator( );
 
 
