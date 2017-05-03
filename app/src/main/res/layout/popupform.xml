@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <!--Title Displays the header-->
     <TextView
         android:id="@+id/form_header_text"
@@ -30,9 +33,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/line_separator_text1"
-        android:text="Enter Ingredient Name:"
+        android:text="Enter Food Name:"
         android:textSize="25dp"
         android:textColor="@color/colorBasicWhite" />
+
+
 
     <EditText
         android:id="@+id/input_ingredient_name_text"
@@ -43,6 +48,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name" />
+
 
 
     <!--Line Separator-->
@@ -64,6 +70,16 @@
         android:text="Enter Portions:"
         android:textSize="25dp"
         android:textColor="@color/colorBasicWhite" />
+
+    <TextView
+        android:id="@+id/units_header_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Units:"
+        android:textSize="25dp"
+        android:textColor="@color/colorBasicWhite"
+        android:layout_above="@+id/unit_spinner"
+        android:layout_toEndOf="@+id/input_portions" />
 
     <EditText
         android:id="@+id/input_portions"
@@ -117,6 +133,70 @@
         android:inputType="number"
         android:text="0" />
 
+    <!--CheckBoxes Tag Layout-->
+    <TextView
+        android:id="@+id/tags_header_text"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input_servings"
+        android:text="Select Tags That Apply:"
+        android:textSize="25dp"
+        android:textColor="@color/colorBasicWhite" />
+
+    <!--Left Column-->
+    <CheckBox
+    android:id="@+id/breakfast_tag"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/tags_header_text"
+    android:layout_alignParentLeft="true"
+    android:onClick="selectItem"/>
+
+    <CheckBox
+        android:id="@+id/lunch_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/breakfast_tag"
+        android:layout_alignParentLeft="true"
+        android:onClick="selectItem"/>
+
+    <CheckBox
+        android:id="@+id/dinner_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lunch_tag"
+        android:layout_alignParentLeft="true"
+        android:onClick="selectItem"/>
+
+
+
+    <!--Right Column-->
+    <CheckBox
+        android:id="@+id/dessert_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_below="@+id/tags_header_text"
+        android:onClick="selectItem"/>
+
+    <CheckBox
+        android:id="@+id/snacks_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_alignBottom="@+id/lunch_tag"
+        android:onClick="selectItem"/>
+
+    <CheckBox
+        android:id="@+id/general_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_below="@+id/snacks_tag"
+        android:onClick="selectItem"/>
+
+
 
     <!--Button Layout-->
     <Button
@@ -125,7 +205,7 @@
         android:textSize="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/input_servings"/>
+        android:layout_below="@id/dinner_tag"/>
 
     <Button
         android:id="@+id/cancel_button"
@@ -133,6 +213,8 @@
         android:textSize="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/input_servings"
+        android:layout_alignBaseline="@+id/create_button"
+        android:layout_alignBottom="@+id/create_button"
         android:layout_toEndOf="@+id/create_button" />
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
