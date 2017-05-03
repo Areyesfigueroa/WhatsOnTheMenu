@@ -15,12 +15,22 @@ public class Refrigerator extends AppCompatActivity
 {
 
     //region "GLOBAL VARIABLES"
+
+
+    private final String TAG = "Refrigerator";
+    FoodItem latestFoodItem = new FoodItem();
+    FoodTypes latestFoodType;
+
+
     //region "SINGLETON"
     private static Refrigerator refrigerator = new Refrigerator( );
 
 
     //A private Constructor prevents any other class from instantiating.
-    private Refrigerator() { }
+    private Refrigerator()
+    {
+        latestFoodType = FoodTypes.NONE;
+    }
 
 
     //Static 'instance' method so that you can call it without instantiating
@@ -30,17 +40,11 @@ public class Refrigerator extends AppCompatActivity
 
     //endregion "SINGLETON"
 
-
-    private final String TAG = "Refrigerator";
-    FoodItem latestFoodItem = new FoodItem();
-    FoodTypes latestFoodType;
-
-
     //region Class's Enum Class
     public enum FoodTypes
     {
         //THE NAMES CAN BE USED AS ID's instead of literal strings
-        DAIRY("Dairy"), FRUITS("Fruits"), STARCH("Starch"), PROTEINS("Proteins"), SUGARS("Sugars"), VEGETABLES("Vegetables"), LIQUIDS("Liquids"), CONDIMENTS("Condiments");
+        DAIRY("Dairy"), FRUITS("Fruits"), STARCH("Starch"), PROTEINS("Proteins"), SUGARS("Sugars"), VEGETABLES("Vegetables"), LIQUIDS("Liquids"), CONDIMENTS("Condiments"), NONE("None");
 
 
         private final String stringName;
@@ -111,7 +115,7 @@ public class Refrigerator extends AppCompatActivity
 
     //region "CLASS METHODS"
 
-    //region "SETTERS & GETTERS"
+    //Setters And Getters
     public void setLatestFoodItem(FoodItem latestFoodItem) {
         this.latestFoodItem = latestFoodItem;
     }
@@ -131,9 +135,8 @@ public class Refrigerator extends AppCompatActivity
         return latestFoodType;
     }
 
-    //endregion "SETTERS & GETTERS"
 
-    //region "DEBUGGING METHODS"
+    //Debug Methods
     public void printEntry(FoodTypes type, String key)
     {
         Log.i(TAG, type.getFoodElement(key).getName());
@@ -150,8 +153,6 @@ public class Refrigerator extends AppCompatActivity
             }
         }
     }
-
-    //endregion "DEBUGGING METHODS"
 
     //endregion "CLASS METHODS"
 }

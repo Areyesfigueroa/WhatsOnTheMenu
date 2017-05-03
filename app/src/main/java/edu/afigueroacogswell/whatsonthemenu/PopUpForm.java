@@ -164,6 +164,8 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
                 break;
             case R.id.cancel_button:
                 Log.d(TAG, "\tcancel_button" + " Executed");
+                Refrigerator.getInstance().setLatestFoodType(Refrigerator.FoodTypes.NONE);
+
                 this.finish();
 
 

@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /*
 * TODO: Create the Toolbar so that it can display on every activity.
@@ -27,23 +28,6 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
 
 
     //region "GLOBAL VARIABLES"
-    //TODO: Get rid of singleton instance.
-    //region "SINGLETON"
-    private static AddIngredients addIngredients = new AddIngredients();
-
-
-    //A private Constructor prevents any other class from instantiating.
-    protected AddIngredients()
-    {}
-
-
-    //Static 'instance' method so that you can call it without instantiating
-    public static AddIngredients getInstance( ) {
-        return addIngredients;
-    }
-
-    //endregion "SINGLETON"
-
 
     //Logcat Log
     private final String TAG = "AddIngredients";
@@ -92,9 +76,6 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
     private ArrayAdapter<String> liquidAdp;
     private ArrayAdapter<String> condimentsAdp;
 
-
-    boolean ignoreFirstResume;
-
     //endregion "GLOBAL VARIABLES"
 
 
@@ -107,10 +88,6 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
 
         //DEBUG STATE LOG
         Log.d(TAG, "Create State");
-
-
-        //RESUME SET-UP
-        ignoreFirstResume = true;
 
 
         //region "TOOLBAR SET-UP"
@@ -193,11 +170,30 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
 
 
     //Runs Everytime we Restart Application
+    //Load SQL data here.
     @Override
     public void onStart()
     {
         super.onStart();
         Log.i(TAG, "Start State");
+
+        //Reload Data
+        for (Refrigerator.FoodTypes type: Refrigerator.FoodTypes.values()) //go through all classes.
+        {
+            //Log.i(TAG, type.name());
+            for (Map.Entry<String, FoodItem> entry: type.getFoodMap().entrySet())
+            {
+                //Log.i(TAG, "\t" + entry.getKey());
+                if(entry.getKey().isEmpty())
+                {
+                    continue;
+                }
+                else
+                {
+                    addToSpinners(entry.getKey(), type);
+                }
+            }
+        }
     }
 
     //Runs When another Activity runs on the ForeGround
@@ -215,13 +211,8 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
         super.onResume();
         Log.i(TAG, "Resume State");
 
-        //Ignore first resume call
-        if (ignoreFirstResume)
-        {
-            ignoreFirstResume = false;
-            return;
-        }
-        else
+        //Check if we are adding an item or cancelling the addition
+        if (Refrigerator.getInstance().getLatestFoodType() != Refrigerator.FoodTypes.NONE)
         {
             FoodItem foodItem = Refrigerator.getInstance().getLatestFoodItem();
             Refrigerator.FoodTypes foodType = Refrigerator.getInstance().getLatestFoodType();
@@ -232,8 +223,37 @@ public class AddIngredients extends AppCompatActivity implements AdapterView.OnI
                 Log.i(TAG, foodItem.getName() + " added to " + foodType.toString() + " Spinner!");
             }
         }
+        else{ Log.i(TAG, "Cancel Spinner Addition"); }
     }
 
+    //Runs when this activity is no longer visible.
+    //Release all of user's resources //ArrayList values.
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        Log.i(TAG, "onStop State");
+
+
+    }
+
+    @Override
+    public void onRestart()
+    {
+        super.onRestart();
+        Log.i(TAG, "onRestart State");
+    }
+
+
+
+    //Runs when application is killed/Closed
+    //Use this to save data onto the sql database.
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        Log.i(TAG, "onDestroy State");
+    }
     //endregion "ACTIVITY LIFECYCLE METHODS"
 
 
