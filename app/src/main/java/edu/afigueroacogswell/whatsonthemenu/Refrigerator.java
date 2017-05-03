@@ -22,7 +22,6 @@ public class Refrigerator extends AppCompatActivity
     FoodTypes latestFoodType;
 
 
-    //region "SINGLETON"
     private static Refrigerator refrigerator = new Refrigerator( );
 
 
@@ -38,7 +37,8 @@ public class Refrigerator extends AppCompatActivity
         return refrigerator;
     }
 
-    //endregion "SINGLETON"
+    //endregion "GLOBAL VARIABLES"
+
 
     //region Class's Enum Class
     public enum FoodTypes
@@ -111,7 +111,7 @@ public class Refrigerator extends AppCompatActivity
 
     //endregion Class's Enum Class
 
-    //endregion "GLOBAL VARIABLES"
+
 
     //region "CLASS METHODS"
 

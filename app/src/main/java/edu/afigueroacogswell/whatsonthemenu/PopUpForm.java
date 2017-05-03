@@ -8,10 +8,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /*
 * TODO:
@@ -33,27 +35,51 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
     EditText portionsEditText;
     EditText servingsEditText;
 
-    String inputFoodName;
-    String inputUnitMeasurements; //spinner variable
-    float inputPortionSize;
-    int inputTotalServings;
+    //Spinner Variable
+    FoodItem.Units inputUnitMeasurements;
 
     //Buttons
     Button createButton;
     Button cancelButton;
 
     //Spinner
-    String[] units = new String[2];
-    Spinner spinner;
+    Spinner unitSpinner;
+    Spinner tagSpinner;
+
+    //CHECKBOX SETUP
+    CheckBox breakfast;
+    CheckBox lunch;
+    CheckBox dinner;
+    CheckBox dessert;
+    CheckBox snacks;
+    CheckBox general;
+
+    ArrayList<FoodItem.Tags> selectionTags = new ArrayList<FoodItem.Tags>();
 
     //endregion "GLOBAL VARIABLES"
 
-    //region "ACTIVITY LYFECYCLE METHODS"
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.popupform);
+
+        //region "SET UP CHECKBOX"
+        breakfast = (CheckBox) findViewById(R.id.breakfast_tag);
+        lunch = (CheckBox) findViewById(R.id.lunch_tag);
+        dinner = (CheckBox) findViewById(R.id.dinner_tag);
+        dessert = (CheckBox) findViewById(R.id.dessert_tag);
+        snacks = (CheckBox) findViewById(R.id.snacks_tag);
+        general = (CheckBox) findViewById(R.id.general_tag);
+
+        //Set Checkbox Text
+        breakfast.setText(FoodItem.Tags.BREAKFAST.getStringID());
+        lunch.setText(FoodItem.Tags.LUNCH.getStringID());
+        dinner.setText(FoodItem.Tags.DINNER.getStringID());
+        dessert.setText(FoodItem.Tags.DESSERT.getStringID());
+        snacks.setText(FoodItem.Tags.SNACKS.getStringID());
+        general.setText(FoodItem.Tags.GENERAL.getStringID());
+        //endregion "SET UP CHECKBOX"
 
 
         //region "SET UP HEADER FOR FORM"
@@ -71,22 +97,16 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
         //endregion "SET FORM INPUT VARIABLES"
 
 
-        //region "UNIT SPINNER SET-UP"
-        //Spinner Contents Set up
-        units[0] = "grams";
-        units[1] = "ounces";
+        //region "SPINNER SET-UP"
+        unitSpinner = (Spinner) findViewById(R.id.unit_spinner);
 
-
-        //Spinner Set-Up
-        spinner = (Spinner) findViewById(R.id.unit_spinner);
-
-        //endregion "UNIT SPINNER SET-UP"
+        //endregion "SPINNER SET-UP"
 
 
         //region "ADAPTER SET-UP"
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, units);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        ArrayAdapter<FoodItem.Units> adapter = new ArrayAdapter<FoodItem.Units>(this, R.layout.support_simple_spinner_dropdown_item, FoodItem.Units.values());
+        unitSpinner.setAdapter(adapter);
+        unitSpinner.setOnItemSelectedListener(this);
 
         //endregion "ADAPTER SET-UP"
 
@@ -123,9 +143,96 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
         //endregion "POP UP WINDOW SET-UP"
     }
 
-    //endregion "ACTIVITY LYFECYCLE METHODS"
 
-    //region "LISTENER METHODS"
+
+    public void selectItem(View view)
+    {
+        //Checks individually if this view's check box has been checked.
+        boolean checked = ((CheckBox) view).isChecked();
+
+        switch (view.getId())
+        {
+            case R.id.breakfast_tag:
+                if(checked)
+                {
+                    selectionTags.add(FoodItem.Tags.BREAKFAST);
+                }
+                else
+                {
+                    selectionTags.remove(FoodItem.Tags.BREAKFAST);
+                }
+
+                break;
+            case R.id.lunch_tag:
+                if(checked)
+                {
+                    selectionTags.add(FoodItem.Tags.LUNCH);
+                }
+                else
+                {
+                    selectionTags.remove(FoodItem.Tags.LUNCH);
+                }
+
+                break;
+            case R.id.dinner_tag:
+                if(checked)
+                {
+                    selectionTags.add(FoodItem.Tags.DINNER);
+                }
+                else
+                {
+                    selectionTags.remove(FoodItem.Tags.DINNER);
+                }
+                break;
+            case R.id.dessert_tag:
+                if(checked)
+                {
+                    selectionTags.add(FoodItem.Tags.DESSERT);
+                }
+                else
+                {
+                    selectionTags.remove(FoodItem.Tags.DESSERT);
+                }
+
+                break;
+            case R.id.snacks_tag:
+                if(checked)
+                {
+                    selectionTags.add(FoodItem.Tags.SNACKS);
+                }
+                else
+                {
+                    selectionTags.remove(FoodItem.Tags.SNACKS);
+                }
+
+                break;
+            case R.id.general_tag:
+                if(checked)
+                {
+                    selectionTags.clear();
+                    selectionTags.add(FoodItem.Tags.GENERAL);
+                }
+                else
+                {
+                    selectionTags.remove(FoodItem.Tags.GENERAL);
+                }
+
+                break;
+
+            default:
+                if(checked)
+                {
+                    selectionTags.clear();
+                    selectionTags.add(FoodItem.Tags.GENERAL);
+                }
+                else
+                {
+                    selectionTags.remove(FoodItem.Tags.GENERAL);
+                }
+                break;
+        }
+    }
+
     @Override
     public void onClick(View v)
     {
@@ -135,15 +242,13 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
                 //DEBUG
                 Log.d(TAG, "create_button" + " Executed");
 
-
                 //Get User Input
-                inputFoodName = nameEditText.getText().toString();
-                inputPortionSize = Float.parseFloat(portionsEditText.getText().toString());
-                inputTotalServings = Integer.parseInt(servingsEditText.getText().toString());
-
+                String inputFoodName = nameEditText.getText().toString();
+                float inputPortionSize = Float.parseFloat(portionsEditText.getText().toString());
+                int inputTotalServings = Integer.parseInt(servingsEditText.getText().toString());
 
                 //Pass User inputs as arguments to the food container. Then pass food container to the refrigerator class.
-                FoodItem foodItem = new FoodItem(inputFoodName, inputPortionSize, inputUnitMeasurements, inputTotalServings);
+                FoodItem foodItem = new FoodItem(inputFoodName, inputPortionSize, inputTotalServings, inputUnitMeasurements , selectionTags);
 
 
                 //Add to Refrigerator Enum Singleton
@@ -181,21 +286,27 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
     //Spinner Listener Methods
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        TextView itemSelectedTxt = (TextView) view;
-        Toast.makeText(this, "You Selected: " + itemSelectedTxt.getText(), Toast.LENGTH_SHORT).show();
+        //TextView itemSelectedTxt = (TextView) view;
 
-        /*
-        * Data Type: Strings
-        * Measurements: grams, ounces
-        * */
-        inputUnitMeasurements = itemSelectedTxt.getText().toString();
+        switch (FoodItem.Units.values()[position])
+        {
+            case GRAMS:
+                inputUnitMeasurements = FoodItem.Units.GRAMS;
+
+                break;
+            case OUNCES:
+                inputUnitMeasurements = FoodItem.Units.OUNCES;
+
+                break;
+            default:
+                break;
+
+        }
     }
 
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
-    //endregion "LISTENER METHODS"
 }
