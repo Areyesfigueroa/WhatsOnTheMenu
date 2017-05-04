@@ -110,8 +110,8 @@ public class NavigationDrawerFragment extends ListFragment implements AdapterVie
 
                 break;
             case CREATEMENU:
-                Toast.makeText(getActivity(), "Create Menu Button Nav (NOT READY)" +i, Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent(NavigationDrawerFragment.this.getActivity(), AddIngredients.class));
+                Toast.makeText(getActivity(), "Create Menu Button Nav" +i, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(NavigationDrawerFragment.this.getActivity(), CreatePlate.class));
 
 
                 break;

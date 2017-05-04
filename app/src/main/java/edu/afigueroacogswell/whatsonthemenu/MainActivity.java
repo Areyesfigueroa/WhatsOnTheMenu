@@ -22,14 +22,7 @@ public class MainActivity extends AppCompatActivity{
     //Variables
     private final String TAG = "MainActivity";
 
-    //Navigation
-    Button addIngredientsNavButton;
-    Button createNavButton;
-    Button searchNavButton;
-    Button jsoupNavButton;
-
     private Toolbar toolbar;
-    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

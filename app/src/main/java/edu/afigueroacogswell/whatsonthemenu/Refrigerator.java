@@ -2,7 +2,9 @@ package edu.afigueroacogswell.whatsonthemenu;
 
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -148,6 +150,19 @@ public class Refrigerator extends AppCompatActivity
             for (Map.Entry<String, FoodItem> entry: type.getFoodMap().entrySet())
             {
                 Log.i(TAG, "\t" + entry.getKey() +", "+ entry.getValue().getName()+"Item");
+            }
+        }
+    }
+
+    public void createPlate(ArrayList<FoodTypes> foodTypesCheckList, ArrayList<FoodItem.Tags> tagsCheckList)
+    {
+        for (FoodTypes type: FoodTypes.values())
+        {
+            Log.i(TAG, type.name());
+            for (Map.Entry<String, FoodItem> entry: type.getFoodMap().entrySet())
+            {
+                Log.i(TAG, "\t" + entry.getKey() +", "+ entry.getValue().getName()+"Item");
+
             }
         }
     }

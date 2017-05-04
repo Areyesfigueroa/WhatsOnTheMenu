@@ -262,6 +262,10 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
                 Refrigerator.getInstance().setLatestFoodType(foodTypes);
 
 
+                //Debug logs
+                Refrigerator.getInstance().printRefrigerator();
+
+
                 //closes activity
                 this.finish();
 
