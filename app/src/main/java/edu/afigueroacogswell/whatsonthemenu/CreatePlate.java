@@ -1,6 +1,7 @@
 package edu.afigueroacogswell.whatsonthemenu;
 
 
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -24,8 +25,8 @@ public class CreatePlate extends AppCompatActivity implements View.OnClickListen
     private final String TAG = "CreatePlate";
 
     //FILTER SELECTIONS
-    ArrayList<Refrigerator.FoodTypes> foodTypesSelection;
-    ArrayList<FoodItem.Tags> foodTagsSelection;
+    ArrayList<Refrigerator.FoodTypes> foodTypesSelection = new ArrayList<>();
+    ArrayList<FoodItem.Tags> foodTagsSelection = new ArrayList<>();
 
     //region "ACTIVITY LIFECYCLE METHODS"
     @Override
@@ -240,7 +241,10 @@ public class CreatePlate extends AppCompatActivity implements View.OnClickListen
             case R.id.sugars_checkbox:
                 if(checked)
                 {
-                    foodTypesSelection.add(Refrigerator.FoodTypes.SUGARS);
+                    if(Refrigerator.FoodTypes.SUGARS != null);
+                    {
+                        foodTypesSelection.add(Refrigerator.FoodTypes.SUGARS);
+                    }
                 }
                 else
                 {

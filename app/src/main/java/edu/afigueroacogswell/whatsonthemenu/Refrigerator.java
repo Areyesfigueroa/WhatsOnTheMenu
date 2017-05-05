@@ -41,7 +41,7 @@ public class Refrigerator extends AppCompatActivity
     //endregion "GLOBAL VARIABLES"
 
 
-    //region Class's Enum Class
+    //region "ENUM CLASS"
     public enum FoodTypes
     {
         //THE NAMES CAN BE USED AS ID's instead of literal strings
