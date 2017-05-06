@@ -2,7 +2,9 @@ package edu.afigueroacogswell.whatsonthemenu;
 
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,9 +20,8 @@ public class Refrigerator extends AppCompatActivity
 
 
     private final String TAG = "Refrigerator";
-    FoodItem latestFoodItem = new FoodItem();
-    FoodTypes latestFoodType;
-
+    private FoodItem latestFoodItem = new FoodItem();
+    private FoodTypes latestFoodType;
 
     private static Refrigerator refrigerator = new Refrigerator( );
 
@@ -40,7 +41,7 @@ public class Refrigerator extends AppCompatActivity
     //endregion "GLOBAL VARIABLES"
 
 
-    //region Class's Enum Class
+    //region "ENUM CLASS"
     public enum FoodTypes
     {
         //THE NAMES CAN BE USED AS ID's instead of literal strings
@@ -110,7 +111,6 @@ public class Refrigerator extends AppCompatActivity
     }
 
     //endregion Class's Enum Class
-
 
 
     //region "CLASS METHODS"

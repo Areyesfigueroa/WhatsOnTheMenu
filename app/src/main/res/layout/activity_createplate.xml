@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--App Bar-->
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar"></include>
+
+        <!--Activity Title-->
+        <TextView
+            android:id="@+id/create_menu_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_menu"
+            android:textColor="@color/colorBasicWhite"
+            android:textSize="30dp"
+            android:layout_below="@+id/app_bar"/>
+
+        <!--Line Separator-->
+        <TextView
+            android:id="@+id/line_separator"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_below="@+id/create_menu_title"
+            android:background="@color/colorAccent"/>
+
+        <ImageView
+            android:id="@+id/food_image"
+            android:layout_width="500dp"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_next"
+            android:layout_below="@+id/line_separator"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="50dp" />
+
+        <TextView
+            android:id="@+id/line_separator1"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_below="@+id/food_image"
+            android:background="@color/colorAccent"/>
+
+
+        <TextView
+            android:id="@+id/create_plate_result_text"
+            android:text="RESULTS"
+            android:textSize="15dp"
+            android:textColor="@color/colorBasicWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line_separator1"/>
+
+        <TextView
+            android:id="@+id/line_separator2"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_below="@+id/create_plate_result_text"
+            android:background="@color/colorAccent"/>
+
+
+
+        <!--CheckBoxes Food Types Layout-->
+        <TextView
+            android:id="@+id/filter_foodtype_header"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line_separator2"
+            android:text="Filter Food Types:"
+            android:textSize="25dp"
+            android:textColor="@color/colorBasicWhite" />
+
+        <!--Left Column-->
+        <CheckBox
+            android:id="@+id/dairy_checkbox"
+            android:text="@string/dairy_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/filter_foodtype_header"
+            android:layout_alignParentLeft="true"
+            android:onClick="selectFoodTypes"/>
+
+        <CheckBox
+            android:id="@+id/fruits_checkbox"
+            android:text="@string/fruits_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dairy_checkbox"
+            android:layout_alignParentLeft="true"
+            android:onClick="selectFoodTypes"/>
+
+        <CheckBox
+            android:id="@+id/starch_checkbox"
+            android:text="@string/starch_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fruits_checkbox"
+            android:layout_alignParentLeft="true"
+            android:onClick="selectFoodTypes"/>
+
+        <CheckBox
+            android:id="@+id/proteins_checkbox"
+            android:text="@string/proteins_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/starch_checkbox"
+            android:layout_alignParentLeft="true"
+            android:onClick="selectFoodTypes"/>
+
+
+
+        <!--Right Column-->
+        <CheckBox
+            android:id="@+id/sugars_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sugars_header"
+            android:layout_marginLeft="100dp"
+            android:layout_below="@+id/filter_foodtype_header"
+            android:onClick="selectFoodTypes"/>
+
+        <CheckBox
+            android:id="@+id/vegetables_checkbox"
+            android:text="@string/vegetables_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_below="@+id/sugars_checkbox"
+            android:onClick="selectFoodTypes"/>
+
+        <CheckBox
+            android:id="@+id/liquids_checkbox"
+            android:text="@string/liquids_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_below="@+id/vegetables_checkbox"
+            android:onClick="selectFoodTypes"/>
+
+
+        <CheckBox
+            android:id="@+id/condiments_checkbox"
+            android:text="@string/condiments_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_below="@+id/liquids_checkbox"
+            android:onClick="selectFoodTypes"/>
+
+
+
+        <!--CheckBoxes Tag Layout-->
+        <TextView
+            android:id="@+id/tags_header_text"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/proteins_checkbox"
+            android:text="Fiter Tags:"
+            android:textSize="25dp"
+            android:textColor="@color/colorBasicWhite" />
+
+        <!--Left Column-->
+        <CheckBox
+            android:id="@+id/createplate_breakfast_tag"
+            android:text="Breakfast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tags_header_text"
+            android:layout_alignParentLeft="true"
+            android:onClick="selectTags"/>
+
+        <CheckBox
+            android:id="@+id/createplate_lunch_tag"
+            android:text="Lunch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/createplate_breakfast_tag"
+            android:layout_alignParentLeft="true"
+            android:onClick="selectTags"/>
+
+        <CheckBox
+            android:id="@+id/createplate_dinner_tag"
+            android:text="Dinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/createplate_lunch_tag"
+            android:layout_alignParentLeft="true"
+            android:onClick="selectTags"/>
+
+
+
+        <!--Right Column-->
+        <CheckBox
+            android:id="@+id/createplate_dessert_tag"
+            android:text="Dessert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_below="@+id/tags_header_text"
+            android:onClick="selectTags"/>
+
+        <CheckBox
+            android:id="@+id/createplate_snacks_tag"
+            android:text="Snacks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_alignBottom="@+id/createplate_lunch_tag"
+            android:onClick="selectTags"/>
+
+        <CheckBox
+            android:id="@+id/createplate_general_tag"
+            android:text="General"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_below="@+id/createplate_snacks_tag"
+            android:onClick="selectTags"/>
+
+
+        <!--Button Layout-->
+        <Button
+            android:id="@+id/create_plate_button"
+            android:text="Create!"
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/createplate_dinner_tag"/>
+
+
+    </RelativeLayout>
+</ScrollView>

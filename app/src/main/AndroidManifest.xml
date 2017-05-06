@@ -31,6 +31,13 @@
 
         <activity android:name=".JsoupParser"></activity>
 
+        <activity android:name=".CreatePlate">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity">
+            </meta-data>
+        </activity>
+
     </application>
 
 </manifest>
