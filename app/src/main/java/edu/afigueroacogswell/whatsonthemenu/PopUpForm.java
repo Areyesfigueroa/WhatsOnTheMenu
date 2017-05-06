@@ -254,7 +254,7 @@ public class PopUpForm extends AppCompatActivity implements View.OnClickListener
                 //Add to Refrigerator Enum Singleton
                 Refrigerator.FoodTypes instance;
                 instance = Refrigerator.FoodTypes.valueOf(foodTypes.name());
-                instance.add(foodItem.name, foodItem);
+                instance.add(foodItem.getName(), foodItem);
 
 
                 //Set refrigerator history.

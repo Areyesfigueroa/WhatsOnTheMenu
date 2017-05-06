@@ -20,8 +20,8 @@ public class Refrigerator extends AppCompatActivity
 
 
     private final String TAG = "Refrigerator";
-    FoodItem latestFoodItem = new FoodItem();
-    FoodTypes latestFoodType;
+    private FoodItem latestFoodItem = new FoodItem();
+    private FoodTypes latestFoodType;
 
     private static Refrigerator refrigerator = new Refrigerator( );
 
@@ -150,19 +150,6 @@ public class Refrigerator extends AppCompatActivity
             for (Map.Entry<String, FoodItem> entry: type.getFoodMap().entrySet())
             {
                 Log.i(TAG, "\t" + entry.getKey() +", "+ entry.getValue().getName()+"Item");
-            }
-        }
-    }
-
-    public void createPlate(ArrayList<FoodTypes> foodTypesCheckList, ArrayList<FoodItem.Tags> tagsCheckList)
-    {
-        for (FoodTypes type: FoodTypes.values())
-        {
-            Log.i(TAG, type.name());
-            for (Map.Entry<String, FoodItem> entry: type.getFoodMap().entrySet())
-            {
-                Log.i(TAG, "\t" + entry.getKey() +", "+ entry.getValue().getName()+"Item");
-
             }
         }
     }

@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -24,6 +25,10 @@ public class CreatePlate extends AppCompatActivity implements View.OnClickListen
 
     private final String TAG = "CreatePlate";
 
+    Button createPlateButton;
+
+    TextView resultText;
+
     //FILTER SELECTIONS
     ArrayList<Refrigerator.FoodTypes> foodTypesSelection = new ArrayList<>();
     ArrayList<FoodItem.Tags> foodTagsSelection = new ArrayList<>();
@@ -34,14 +39,17 @@ public class CreatePlate extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createplate);
 
-        //region "TOOLBAR SET-UP"
+        //TOOLBAR SET UP
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //endregion "TOOLBAR SET-UP"
+        //BUTTON SET UP
+        createPlateButton = (Button) findViewById(R.id.create_plate_button);
+        createPlateButton.setOnClickListener(this);
 
+        resultText = (TextView) findViewById(R.id.create_plate_result_text);
     }
 
 
@@ -87,8 +95,6 @@ public class CreatePlate extends AppCompatActivity implements View.OnClickListen
         Log.i(TAG, "onRestart State");
     }
 
-
-
     //Runs when application is killed/Closed
     //Use this to save data onto the sql database.
     @Override
@@ -100,6 +106,55 @@ public class CreatePlate extends AppCompatActivity implements View.OnClickListen
     //endregion "ACTIVITY LIFECYCLE METHODS"
 
 
+    //CLASS METHODS
+    private void createPlate()
+    {
+        //For each item food type in the refrigerator.
+        for(Refrigerator.FoodTypes type : foodTypesSelection)
+        {
+            //Do Stuff here since filter is done.
+            //Check for tags in current type.
+            tagFilter(type);
+
+        }
+    }
+
+    //STILL IN PROGRESS.
+    private void tagFilter(Refrigerator.FoodTypes currentType)
+    {
+        String foodEntry = "";
+
+        //if the current type is empty.
+        if (currentType.getFoodMap().isEmpty())
+        {
+            Toast.makeText(this, currentType.toString() + " is empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //For each map entry in the foodmap. Loop through each foodItem
+        for (Map.Entry<String, FoodItem> entry: currentType.getFoodMap().entrySet())
+        {
+            //Loop through tags in the current foodItem. Loop through each food tag in FoodItem.
+            for (int index = 0; index < entry.getValue().getTags().size(); index++)
+            {
+                //Loop through each foodTag in the foodTagSelection
+                for(int counter = 0; counter < foodTagsSelection.size(); counter++)
+                {
+                    //Compare the current entry tag value with the all the tags in the foodtagsSelection
+                    if(entry.getValue().getTags().get(index) != foodTagsSelection.get(counter))
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        resultText.setText(entry.getValue().getName()); //gets the latest foodItem name. Replace with array.
+                    }
+                }
+            }
+        }
+    }
+
+    //CHECKBOX LISTENERS
     public void selectTags(View view)
     {
         //Checks individually if this view's check box has been checked.
@@ -241,10 +296,7 @@ public class CreatePlate extends AppCompatActivity implements View.OnClickListen
             case R.id.sugars_checkbox:
                 if(checked)
                 {
-                    if(Refrigerator.FoodTypes.SUGARS != null);
-                    {
-                        foodTypesSelection.add(Refrigerator.FoodTypes.SUGARS);
-                    }
+                    foodTypesSelection.add(Refrigerator.FoodTypes.SUGARS);
                 }
                 else
                 {
@@ -255,7 +307,6 @@ public class CreatePlate extends AppCompatActivity implements View.OnClickListen
             case R.id.vegetables_checkbox:
                 if(checked)
                 {
-                    foodTypesSelection.clear();
                     foodTypesSelection.add(Refrigerator.FoodTypes.VEGETABLES);
                 }
                 else
@@ -267,7 +318,6 @@ public class CreatePlate extends AppCompatActivity implements View.OnClickListen
             case R.id.liquids_checkbox:
                 if(checked)
                 {
-                    foodTypesSelection.clear();
                     foodTypesSelection.add(Refrigerator.FoodTypes.LIQUIDS);
                 }
                 else
@@ -279,7 +329,6 @@ public class CreatePlate extends AppCompatActivity implements View.OnClickListen
             case R.id.condiments_checkbox:
                 if(checked)
                 {
-                    foodTypesSelection.clear();
                     foodTypesSelection.add(Refrigerator.FoodTypes.CONDIMENTS);
                 }
                 else
@@ -288,20 +337,21 @@ public class CreatePlate extends AppCompatActivity implements View.OnClickListen
                 }
 
                 break;
-
             default:
 
                 break;
         }
     }
 
+
+    //BUTTON LISTENER
     @Override
     public void onClick(View v)
     {
         switch (v.getId())
         {
             case R.id.create_plate_button:
-                Refrigerator.getInstance().createPlate(foodTypesSelection, foodTagsSelection);
+                createPlate();
 
                 break;
             default:

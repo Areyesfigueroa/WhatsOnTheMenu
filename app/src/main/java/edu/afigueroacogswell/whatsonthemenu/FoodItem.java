@@ -8,11 +8,11 @@ import java.util.ArrayList;
 
 public class FoodItem
 {
-    String name;
-    float portionSize;
-    int totalServings;
-    Units unitMeasurement;
-    ArrayList<Tags> foodTags;
+    private String name;
+    private float portionSize;
+    private int totalServings;
+    private Units unitMeasurement;
+    private ArrayList<Tags> foodTags;
 
     //TAGS used to differentiate the food when creating or adding an Ingredient. Move to refrigerator.
     public enum Tags
